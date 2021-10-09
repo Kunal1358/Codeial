@@ -2,33 +2,31 @@ const User = require('../models/users');
 
 module.exports.profile = function(req,res){
 
-                   return res.render('users_profile',{
-                    title: "User_Profile"
+    // check if user id exist in cookie
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id,function(error,user){
+
+            if(error){ console.log("Error accessing the user profile ", error); return;}
+
+            if(user){ // if user exist show his profile
+
+                return res.render('users_profile',{
+                    title: "User Profile",
+                    user:user
                 });
 
-    
-    // // check if user id exist in cookie
-    // if(req.cookie){
-    //     User.findById(req.cookie.id,function(error,user){
+            }else{ // send him to sign in page
+                return res.redirect('/users/sign-in');
+            }
 
-    //         if(error){ console.log("Error accessing the user profile ", error); return;}
+        });
+    }else{
+        return res.redirect('/users/sign-in');
+    }
 
-    //         if(user){ // if user exist show his profile
-
-    //             return res.render('users_profile',{
-    //                 title: "User Profile",
-    //                 user:user
-    //             });
-
-    //         }else{ // send him to sign in page
-    //             return res.redirect('users/sign-in');
-    //         }
-
-    //     })
-    // }
 };
 
-// render sign in page
+// render sign up page
 module.exports.signUp = function(req,res){
 
     return res.render('user_sign_up',{
@@ -36,7 +34,7 @@ module.exports.signUp = function(req,res){
     });
 };
 
-// render sign out page
+// render sign in page
 module.exports.signIn = function(req,res){
 
     return res.render('user_sign_in',{
@@ -68,7 +66,7 @@ module.exports.create = function(req,res){
         }else{ // redirect him back
             return res.redirect('back');
         }
-    })
+    });
 
 };
 
@@ -94,6 +92,7 @@ module.exports.createSession = function(req,res){
             return res.redirect('back');
         }
         
-    })
+    });
 };
 
+// Sign Out todo 
