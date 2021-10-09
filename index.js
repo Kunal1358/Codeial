@@ -5,6 +5,8 @@ const app=express();
 // Using express router
 app.use('/',require('./routes/index'));
 
+
+
 app.listen(port,function(err){
     if(err){
         console.log(`Error running server: ${err}`);
