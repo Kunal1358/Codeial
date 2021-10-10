@@ -1,10 +1,9 @@
-const user = require('../models/users');
 const User = require('../models/users');
 
 module.exports.profile = function(req,res){
 
-    return res.render('users_profile',{
-        title: "users_profile"
+    return res.render('user_profile',{
+        title: "User Profile"
     });
 
 };
@@ -12,23 +11,32 @@ module.exports.profile = function(req,res){
 // render sign in page
 module.exports.signUp = function(req,res){
 
+    if(req.isAuthenticated()){ 
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_sign_up',{
-        title: "Codial : sign Up"
+        title: "Codial | sign Up"
     });
 };
 
 // render sign out page
 module.exports.signIn = function(req,res){
 
+    if(req.isAuthenticated()){ 
+        return res.redirect('/users/profile');
+    }
+
+
     return res.render('user_sign_in',{
-        title: "Codial : sign In"
+        title: "Codial | sign In"
     });
 };
 
 // get sign up data
 module.exports.create = function(req,res){
    
-    if(req.body.password!=req.body.confirm_password){
+    if(req.body.password != req.body.confirm_password){
         return res.redirect('back');
     }
 
@@ -46,15 +54,22 @@ module.exports.create = function(req,res){
         }else{
             return res.redirect('back');
         }
-    })
+    });
 
-};
+}
 
 // Create sign in session
 module.exports.createSession = function(req,res){
-    //TODO later
-
+    
     return res.redirect('/');
 
 };
 
+// Sign Out
+module.exports.destroySession = function(req,res){
+
+    req.logout();
+    
+    return res.redirect('/');
+
+}

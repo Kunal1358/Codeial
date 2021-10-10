@@ -1,7 +1,6 @@
 module.exports.home = function(req,res){
 
-
-    //To access cookie
+    //To access cookie we use req.cookies
     console.log(req.cookies);
 
     // to set cookie
@@ -13,3 +12,4 @@ module.exports.home = function(req,res){
 
 };
 
+// module.exports.actionName = function(req, res){}

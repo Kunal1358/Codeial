@@ -1,11 +1,13 @@
 const express = require('express');
+const router = express.Router();
 const passport = require('passport');
 
-const router = express.Router();
 
 const userController = require('../controllers/users_controller');
 
-router.get('/profile',userController.profile);
+console.log("User router loaded");
+
+router.get('/profile' , passport.checkAuthentication ,userController.profile);
 
 /// sign in & up route
 router.get('/sign-up',userController.signUp);
@@ -15,6 +17,7 @@ router.get('/sign-in',userController.signIn);
 router.post('/create',userController.create); 
 
 
+
 // use passport as middlewear
 router.post('/create-session' , passport.authenticate(
     'local',
@@ -22,6 +25,7 @@ router.post('/create-session' , passport.authenticate(
 )  ,userController.createSession );
 
 
+router.get('/sign-out',userController.destroySession); 
 
 
 
