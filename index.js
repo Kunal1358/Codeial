@@ -91,11 +91,6 @@ app.use(session({
 
 
 
-// Basic usage
-   
-
-
-
 
 
 // initialize passpoet
