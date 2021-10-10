@@ -1,16 +1,8 @@
-body{
-    margin: 0;
-    text-align: center;
-    background-color: wheat;
+body {
+  margin: 0;
+  background-color: #eed78d;
 }
 
-li{
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; */
-
-    display: inline-block;
-    float: left;
-    padding-left:10px;
-    
+body #layout-main {
+  height: 100%;
 }
