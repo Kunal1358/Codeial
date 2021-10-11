@@ -1,5 +1,7 @@
 
-const Post = require('../models/Post');
+// const Post = require('../models/Post'); this was the error
+
+const Post = require('../models/post');
 
 module.exports.home = function(req,res){
 

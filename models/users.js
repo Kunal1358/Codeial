@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+console.log("Inside User Model \n");
+
+const userSchema = new mongoose.Schema({
     email:{
         type : String,
         required : true,
@@ -18,6 +20,6 @@ const userSchema = mongoose.Schema({
     timestamps:true
 });
 
-const user = mongoose.model('user',userSchema);
+const User = mongoose.model('User',userSchema);
 
-module.exports = user;
+module.exports = User;
