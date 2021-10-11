@@ -14,6 +14,11 @@ const MongoStore = require('connect-mongo');
 
 // sass middleware
 const sassMiddleware  = require('node-sass-middleware');
+//Flash 
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
+
 
 // Using sassMiddleware
 app.use(sassMiddleware({
@@ -26,7 +31,6 @@ app.use(sassMiddleware({
 
 
 app.use(express.urlencoded());
-
 app.use(cookieParser());
 
 app.use(express.static('./assets'));
@@ -41,30 +45,6 @@ app.set('layout extractScripts', true);
 // set up view engine
 app.set('view engine','ejs');
 app.set('views','./views');
-
-
-
-// // Mongo store is used to store connection in db
-// app.use(session({
-//     // TODO change the secret before deployment in production mode
-//     name: ' Codeial',
-//     secret: 'blahsomething',
-//     saveUninitialized: false,
-//     resave: false,
-
-//     cookie: { // age of cookie in milli seconds
-//         maxAge: (1000 * 60 * 100)
-//     },
-//     store: new MongoStore(
-//     {
-//         mongooseConnection: db,
-//         autoRemove: 'disabled'
-//     },
-//     function(error){
-//         console.log(error || "Connect-mongodb setup ok")
-//     })
-
-// }));
 
 
 // mongo store is used to store the session cookie in the db
@@ -98,6 +78,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+//Flash
+app.use(flash());
+app.use(customMware.setFlash);
 
 
 // Using express router

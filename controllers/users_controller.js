@@ -13,6 +13,7 @@ module.exports.profile = function(req,res){
     });
 };
 
+
 module.exports.update = function(req,res){
 
     if(req.user.id == req.params.id){
@@ -44,6 +45,7 @@ module.exports.signUp = function(req,res){
     });
 };
 
+
 // render sign out page
 module.exports.signIn = function(req,res){
 
@@ -56,6 +58,7 @@ module.exports.signIn = function(req,res){
         title: "Codial | sign In"
     });
 };
+
 
 // get sign up data
 module.exports.create = function(req,res){
@@ -82,18 +85,21 @@ module.exports.create = function(req,res){
 
 }
 
+
 // Create sign in session
 module.exports.createSession = function(req,res){
     
+    req.flash('success','Logged in Succesfully');
     return res.redirect('/');
 
 };
+
 
 // Sign Out
 module.exports.destroySession = function(req,res){
 
     req.logout();
-    
+    req.flash('success','Logged in Succesfully');   
     return res.redirect('/');
 
 }
