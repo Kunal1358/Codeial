@@ -2,50 +2,32 @@
 const Post = require('../models/post');
 const User  = require('../models/users');
 
-module.exports.home = function(req,res){
+module.exports.home = async function(req,res){
 
-    // //To access cookie we use req.cookies
-    // console.log(req.cookies);
+    try{
 
-    // // to set cookie
-    // res.cookie("User_id",10000);
+        let posts = await Post.find({})
+        .populate('user')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
+        });
 
-    // Post.find({},function(err,posts){
+        let users = await User.find({});
 
-    //     if(err){console.error("Error Fetchinng the Posts from DB", err); return;}
-
-    //     return res.render('home',{
-    //         title: "Codeial | Home",
-    //         Post: posts
-    //     });
-
-
-    // });
+        return res.render('home',{
+            title: "Codeial | Home",
+            posts: posts,
+            all_users: users
+        });
 
 
-    Post.find({})
-    .populate('user')
-    .populate({
-        path: 'comments',
-        populate: {
-            path: 'user'
-        }
-    })
-    .exec(function(err,posts){
-
-        if(err){console.error("Error Fetchinng the Posts from DB \n", err); return;}
-
-        User.find({}, function(err,users){
-            if(err){console.error("Error Fetchinng Users from DB \n", err); return;}
-
-            return res.render('home',{
-                title: "Codeial | Home",
-                posts: posts,
-                all_users: users
-            });
-        })
-    })
-
+    }catch(err){
+        console.error("Error Fetching Posts/Users from DB \n", err);
+        return;
+    }
 }
 
 
@@ -53,3 +35,8 @@ module.exports.home = function(req,res){
 
 
 // module.exports.actionName = function(req, res){}
+
+    // //To access cookie we use req.cookies
+    // console.log(req.cookies);
+    // // to set cookie
+    // res.cookie("User_id",10000)
