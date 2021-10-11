@@ -25,6 +25,7 @@ module.exports.home = async function(req,res){
 
 
     }catch(err){
+        req.flash('error', err);
         console.error("Error Fetching Posts/Users from DB \n", err);
         return;
     }

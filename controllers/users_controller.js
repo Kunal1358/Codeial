@@ -21,12 +21,13 @@ module.exports.update = function(req,res){
         User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
 
             if(err){ console.log("Error Finding User in DB \n", err); return;}
-
+            req.flash('success', 'Updated!');
             return res.redirect('back');
 
         })
 
     }else{
+        req.flash('error', 'Unauthorized!');
         return res.status(401).send('Unauthorized');
     }
 
@@ -64,21 +65,23 @@ module.exports.signIn = function(req,res){
 module.exports.create = function(req,res){
    
     if(req.body.password != req.body.confirm_password){
+        req.flash('error', 'Passwords do not match');
         return res.redirect('back');
     }
 
     User.findOne({email : req.body.email},function(error,user){
-        if(error){ console.log("Error Creating User with create: ", error); return;
+        if(error){req.flash('error', err); return;
         }
         if(!user){
             User.create(req.body,function(error,user){
 
-                if(error){ console.log("Error Creating While Signing Up: ", error); return; }
+                if(error){req.flash('error', error); return; }
 
                 return res.redirect('/users/sign-in');
 
             })
         }else{
+            req.flash('success', 'You have signed up, login to continue!');
             return res.redirect('back');
         }
     });
@@ -89,7 +92,7 @@ module.exports.create = function(req,res){
 // Create sign in session
 module.exports.createSession = function(req,res){
     
-    req.flash('success','Logged in Succesfully');
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 
 };
@@ -99,7 +102,7 @@ module.exports.createSession = function(req,res){
 module.exports.destroySession = function(req,res){
 
     req.logout();
-    req.flash('success','Logged in Succesfully');   
+    req.flash('success', 'You have logged out!');  
     return res.redirect('/');
 
 }

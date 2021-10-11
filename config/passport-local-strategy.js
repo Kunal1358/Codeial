@@ -8,18 +8,19 @@ const User = require('../models/users');
 
 passport.use(new LocalStartegy(
     { // defining username feild
-        usernameField: "email"
+        usernameField: "email",
+        passReqToCallback: true
     },
-    function(email,password,done){ // done is call back func
+    function(req,email,password,done){ // done is call back func
 
         User.findOne({email:email},function(error,user){// finding user by email
             if(error){ 
-                console.error("Error in finding user --> Passport");
+                req.flash('error', error);
                 return done(error);
             }
 
             if(!user || user.password != password){ //  if auth is not done then return
-                console.error("Invalid username/password");
+                req.flash('error', 'Invalid Username/Password');
                 return done(null,false);
             }
             // else return the user
