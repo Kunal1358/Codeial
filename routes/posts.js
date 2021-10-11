@@ -7,6 +7,8 @@ const postController = require('../controllers/posts_controller');
 // router.post('/create',postController.create);
 router.post('/create',passport.checkAuthentication,postController.create);
 
+router.get('/destroy/:id', passport.checkAuthentication, postController.destroy );
+
 
 
 
