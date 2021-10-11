@@ -8,6 +8,7 @@ const userController = require('../controllers/users_controller');
 console.log("User router loaded");
 
 router.get('/profile/:id' , passport.checkAuthentication ,userController.profile);
+router.post('/update/:id' , passport.checkAuthentication ,userController.update);
 
 /// sign in & up route
 router.get('/sign-up',userController.signUp);
