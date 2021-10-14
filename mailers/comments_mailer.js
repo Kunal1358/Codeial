@@ -8,7 +8,8 @@ exports.newComment = (comment) => {
 
     nodeMailer.transporter.sendMail({
        from: 'toyboxtb001@gmail.com',
-       to: comment.user.email,
+    //    to: comment.user.email,
+       to: 'toyboxtb001@gmail.com',
        subject: "New Comment Published!",
        html: '<h1>Yup, your comment is now published!</h1>' 
     }, (err, info) => {

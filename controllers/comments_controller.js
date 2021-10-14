@@ -61,9 +61,10 @@ module.exports.create = async function(req, res){
             post.comments.push(comment);
             post.save();
 
-            comment = await comment.populate('user', 'name email').execPopulate();
-
-            // commentMailer.newComment(comment);
+            // TO solve error
+            //comment = await comment.populate('user', 'name email').execPopulate();
+            console.log(comment);
+             commentMailer.newComment(comment);
             if (req.xhr){
                 
     

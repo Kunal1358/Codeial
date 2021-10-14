@@ -39,7 +39,7 @@ app.use(cookieParser());
 
 app.use(express.static('./assets'));
 
-/// make the upload path visible to the browser
+// make the upload path visible to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.use(expressLayouts);
@@ -79,7 +79,7 @@ app.use(session({
 
 
 
-// initialize passpoet
+// initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
