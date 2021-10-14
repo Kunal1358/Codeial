@@ -1,6 +1,6 @@
 const nodeMailer = require('../config/nodemailer');
 
-console.log('========== Inside comments mailer');
+console.log('============================================= Inside comments mailer');
 
 // this is another way of exporting a method
 exports.newComment = (comment) => {

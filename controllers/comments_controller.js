@@ -60,11 +60,10 @@ module.exports.create = async function(req, res){
 
             post.comments.push(comment);
             post.save();
-            console.log("Before ********************")
+
             comment = await comment.populate('user', 'name email').execPopulate();
-            console.log("Before 2 ********************")
-            commentsMailer.newComment(comment);
-            console.log("Before 3 ********************")
+
+            // commentMailer.newComment(comment);
             if (req.xhr){
                 
     
@@ -97,9 +96,9 @@ module.exports.destroy = async function(req,res){
         
         if(comment.user == req.user.id){
 
-            comment.remove();
             let postId = comment.post;
 
+            comment.remove();
             let post = await Post.findByIdAndUpdate(postId , { $pull : {comments : req.params.id }});
 
             // send the comment id which was deleted back to the views
