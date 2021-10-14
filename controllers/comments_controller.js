@@ -1,10 +1,54 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const commentMailer = require('../mailers/comments_mailer');
+
+// module.exports.create = async function(req, res){
+
+//     try{
+
+//         let post = await Post.findById(req.body.post);
+
+//         if (post){
+//             let comment = await Comment.create({
+//                 content: req.body.content,
+//                 post: req.body.post,
+//                 user: req.user._id
+//             });
+
+//             post.comments.push(comment);
+//             post.save();
+//             console.log("************************************* Before 0");
+//             comment = await comment.populate('user', 'name email').execPopulate();
+//             console.log("************************************* Before");
+//             commentMailer.newComment(comment);
+//             console.log("************************************* After");
+
+//             if (req.xhr){
+
+//                 return res.status(200).json({
+//                     data: {
+//                         comment: comment
+//                     },
+//                     message: "Post created!"
+//                 });
+//             }
+
+//             req.flash('success', 'Comment published!');
+
+//             res.redirect('/');
+
+//         }
+
+//     }catch(err){
+//         req.flash('error', err);
+//         return;
+//     }       
+
+// }
 
 module.exports.create = async function(req, res){
 
     try{
-
         let post = await Post.findById(req.body.post);
 
         if (post){
@@ -16,10 +60,13 @@ module.exports.create = async function(req, res){
 
             post.comments.push(comment);
             post.save();
-
+            console.log("Before ********************")
+            comment = await comment.populate('user', 'name email').execPopulate();
+            console.log("Before 2 ********************")
+            commentsMailer.newComment(comment);
+            console.log("Before 3 ********************")
             if (req.xhr){
-                // Similar for comments to fetch the user's id!
-                comment = await comment.populate('user', 'name').execPopulate();
+                
     
                 return res.status(200).json({
                     data: {
@@ -29,18 +76,18 @@ module.exports.create = async function(req, res){
                 });
             }
 
+
             req.flash('success', 'Comment published!');
 
             res.redirect('/');
-
         }
-
     }catch(err){
         req.flash('error', err);
         return;
-    }       
-
+    }
+    
 }
+
 
 module.exports.destroy = async function(req,res){
 
