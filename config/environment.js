@@ -1,3 +1,17 @@
+const fs = require('fs');
+const rfs = require('rotating-file-stream');
+const path = require('path');
+
+
+const logDirectory = path.join(__dirname, '../production_logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+const accessLogStream = rfs.createStream('access.log', {
+    interval: '1d',
+    path: logDirectory
+});
+
+
 
 const development = {
 
@@ -19,7 +33,11 @@ const development = {
     google_client_id: '113798808560-7oka32dds52vf2v2ve4rlm21i1ck34sa.apps.googleusercontent.com',
     google_client_secret: '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',
     google_call_back_url: "http://localhost:8000/users/auth/google/callback",
-    jwt_secret: 'codeial'
+    jwt_secret: 'codeial',
+    morgan: {
+        mode: 'dev',
+        options: {stream: accessLogStream}
+    }
 
 }
 
@@ -42,9 +60,12 @@ const production = {
     google_client_id: process.env.CODEIAL_GOOGLE_CLIENT_ID,
     google_client_secret: process.env.CODEIAL_GOOGLE_CLIENT_SECRET,
     google_call_back_url: process.env.CODEIAL_GOOGLE_CALLBACK_URL, 
-    jwt_secret: process.env.CODEIAL_JWT_SECRET,
 
-    
+    jwt_secret: process.env.CODEIAL_JWT_SECRET,
+    morgan: {
+        mode: 'combined',
+        options: {stream: accessLogStream}
+    }
 }
 
 
