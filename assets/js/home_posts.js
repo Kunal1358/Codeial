@@ -119,6 +119,10 @@
 //     convertPostsToAjax();
 // }
 
+
+console.log("Inside home post");
+
+
 {   
     // method to submit the form data for new post using AJAX
     let createPost = function(){

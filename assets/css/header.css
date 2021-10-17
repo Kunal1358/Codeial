@@ -1,12 +1,8 @@
-#layout-header {
-  font-family: sans-serif;
-}
-
 #layout-header nav {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
-  background: #2d7dbe;
+  background: #2196f3;
   color: white;
   box-shadow: 1px 1px 1px 1px lightgrey;
 }
@@ -18,12 +14,12 @@
 }
 
 #layout-header nav .auth-links ul {
-  margin: 5% 10px;
+  margin: 5% 5px;
   display: flex;
+  list-style: none;
 }
 
 #layout-header nav .auth-links ul li {
-  list-style: none;
   margin-right: 10px;
 }
 
