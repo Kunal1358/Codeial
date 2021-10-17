@@ -69,6 +69,8 @@ const production = {
 }
 
 
+// module.exports = development;
 
+// To run in production
 module.exports = eval(process.env.CODEIAL_ENVIRONMENT) == undefined ? development : eval(process.env.CODEIAL_ENVIRONMENT);
 
