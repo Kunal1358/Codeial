@@ -1,17 +1,15 @@
 const nodeMailer = require('../config/nodemailer');
 
-// New Comment 
-exports.newComment = (comment) => {
+// Post created
+exports.createPost = (post) => {
 
-    console.log('inside newComment mailer', comment);
-    // Using template 
-    let htmlString = nodeMailer.renderTemplate({comment: comment}, '/comments/new_comment.ejs' )
+    let htmlString = nodeMailer.renderTemplate({post: post}, '/posts/new_post.ejs' )
 
     nodeMailer.transporter.sendMail({
        from: 'toyboxtb001@gmail.com',
        // TODO change to:
        to: 'toyboxtb001@gmail.com',
-       subject: "New Comment Published!",
+       subject: "New Post Published!",
        html: htmlString
     }, (err, info) => {
         if (err){
@@ -25,16 +23,16 @@ exports.newComment = (comment) => {
 }
 
 
-// Delete Commment
-exports.deleteComment = (comment) => {
+// Delete Post
+exports.deletePost = (post) => {
 
-    let htmlString = nodeMailer.renderTemplate({comment: comment}, '/comments/delete_comment.ejs' )
+    let htmlString = nodeMailer.renderTemplate({post: post}, '/posts/delete_post.ejs' )
 
     nodeMailer.transporter.sendMail({
        from: 'toyboxtb001@gmail.com',
        // TODO change to:
        to: 'toyboxtb001@gmail.com',
-       subject: "Comment Deleted!",
+       subject: "Post Deleted!",
        html: htmlString
     }, (err, info) => {
         if (err){

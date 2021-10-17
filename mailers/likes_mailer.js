@@ -1,17 +1,16 @@
 const nodeMailer = require('../config/nodemailer');
 
-// New Comment 
-exports.newComment = (comment) => {
+// Post liked
+exports.postLike = (like) => {
 
-    console.log('inside newComment mailer', comment);
     // Using template 
-    let htmlString = nodeMailer.renderTemplate({comment: comment}, '/comments/new_comment.ejs' )
+    let htmlString = nodeMailer.renderTemplate({like: like}, '/likes/post_like.ejs' )
 
     nodeMailer.transporter.sendMail({
        from: 'toyboxtb001@gmail.com',
-       // TODO change to:
+       // TODO change TO
        to: 'toyboxtb001@gmail.com',
-       subject: "New Comment Published!",
+       subject: "Someone Liked your Post!!!",
        html: htmlString
     }, (err, info) => {
         if (err){
@@ -25,23 +24,22 @@ exports.newComment = (comment) => {
 }
 
 
-// Delete Commment
-exports.deleteComment = (comment) => {
+// Comment liked
+exports.commentLike = (like) => {
 
-    let htmlString = nodeMailer.renderTemplate({comment: comment}, '/comments/delete_comment.ejs' )
+    let htmlString = nodeMailer.renderTemplate({like: like}, '/likes/comment_like.ejs' )
 
     nodeMailer.transporter.sendMail({
        from: 'toyboxtb001@gmail.com',
-       // TODO change to:
+       // TODO change TO
        to: 'toyboxtb001@gmail.com',
-       subject: "Comment Deleted!",
+       subject: "Someone Liked your Comment!!!",
        html: htmlString
     }, (err, info) => {
         if (err){
             console.log('Error in sending mail', err);
             return;
         }
-
         console.log('Message sent', info);
         return;
     });

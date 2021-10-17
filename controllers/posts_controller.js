@@ -1,6 +1,10 @@
 const Post = require('../models/post');
 const Comments = require('../models/comment');
 const Like = require('../models/like');
+const queue = require('../config/kue');
+
+const postMailer  = require('../mailers/posts_mailer');
+const postEmailWorker = require('../worker/post_email_worker');
 
 // module.exports.create = async function(req,res){
 //     try{
@@ -30,13 +34,29 @@ const Like = require('../models/like');
 //     }
 // }
 
+
+
+
+
+
+// Create Post
+
+
 module.exports.create = async function(req, res){
     try{
         let post = await Post.create({
             content: req.body.content,
             user: req.user._id
         });
-        
+
+
+        // Create Post Email
+        let job = queue.create('newPost', post).save(function(err){
+            if(err){console.log("Error in creating a queue \n", err); return; }
+
+            console.log("Job enqued ", job.id);
+        })
+
         if (req.xhr){
             console.log(post);
             // TO solve error
@@ -63,7 +83,7 @@ module.exports.create = async function(req, res){
   
 }
 
-
+// Delete Post
 module.exports.destroy = async function(req,res){
 
     try{
@@ -77,13 +97,15 @@ module.exports.destroy = async function(req,res){
 
             if (req.xhr){
 
-
             // CHANGE :: delete the associated likes for the post and all its comments' likes too
             await Like.deleteMany({likeable: post, onModel: 'Post'});
             await Like.deleteMany({_id: {$in: post.comments}});
 
-
-
+            // Delete Post Email
+            let job = queue.create('deletePost', post).save(function(err){
+                if(err){console.log("Error in creating a queue \n", err); return; }
+                console.log("Job enqued ", job.id);
+            })
 
                 return res.status(200).json({
                     data: {

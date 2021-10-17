@@ -27,7 +27,7 @@ const development = {
         secure: false,
         auth: {
             user: 'toyboxtb001@gmail.com', // my email
-            pass: 'childboxadmin' // my pass
+            pass: 'Codeial_Prod12911' // my pass
         }
     },
     google_client_id: '113798808560-7oka32dds52vf2v2ve4rlm21i1ck34sa.apps.googleusercontent.com',

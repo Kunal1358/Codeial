@@ -1,6 +1,11 @@
 const Like = require('../models/like');
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+const queue = require('../config/kue');
+
+const likeMailer = require('../mailers/likes_mailer');
+const likeEmailWorker = require('../worker/like_email_worker');
+
 
 module.exports.toggleLike = async function(req, res){
     try{
@@ -43,6 +48,25 @@ module.exports.toggleLike = async function(req, res){
 
             likeable.likes.push(newLike._id);
             likeable.save();
+
+            // Email notification
+            // If user like the post then send email post liked
+            if(req.query.type == 'Post'){
+
+                let job = queue.create('postLike', newLike._id).save(function(err){
+                    if(err){console.log("Error in creating a queue \n", err); return; }
+        
+                    console.log("Job enqued ", job.id);
+                });
+            }else{ // else end mail comment liked
+
+                let job = queue.create('commentLike', newLike._id).save(function(err){
+                    if(err){console.log("Error in creating a queue \n", err); return; }
+        
+                    console.log("Job enqued ", job.id);
+                });
+
+            }
 
         }
 
