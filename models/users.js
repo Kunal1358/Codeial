@@ -4,7 +4,6 @@ const multer = require('multer');
 const path = require('path');
 const AVATAR_PATH = path.join('/uploads/users/avatars');
 
-console.log("Inside User Model \n");
 
 const userSchema = new mongoose.Schema({
     email:{

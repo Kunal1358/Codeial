@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-console.log("Inside post Model \n");
 
 const postSchema = new mongoose.Schema({
     content: {
