@@ -17,6 +17,8 @@ router.use('/likes',require('./like'));
 
 router.use('/api',require('./api'));
 
+router.use('/codeial',require('./contactForm'));
+
 
 //for any further routes access from here
 // app.use('/routeName',require('./route'));

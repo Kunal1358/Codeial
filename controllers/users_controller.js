@@ -1,19 +1,48 @@
 const User = require('../models/users');
 const path = require('path');
 const fs = require('fs');
+const Post = require('../models/post');
 
 // Profile
-module.exports.profile = function(req,res){
+// module.exports.profile = function(req,res){
 
-    User.findById(req.params.id, function(err,user){
+//     User.findById(req.params.id, function(err,user){
 
-        if(err){ console.log("Error Finding User in DB \n", err); return;}
+//         if(err){ console.log("Error Finding User in DB \n", err); return;}
 
-        return res.render('user_profile',{
-            title: "User Profile",
-            profile_user: user
-        });
+//         return res.render('user_profile',{
+//             title: "User Profile",
+//             profile_user: user
+//         });
+//     });
+// };
+
+module.exports.profile = async function(req,res){
+
+    let user = await User.findById(req.params.id,);
+
+    // finding post
+    let posts = await Post.find({'user':(req.params.id)})
+    .sort('-createdAt')
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'user'
+        },
+        populate: { // populated likes
+            path: 'likes'
+        }
+    }).populate('likes');
+
+
+    return res.render('user_profile',{
+        title: "User Profile",
+        profile_user: user,
+        posts: posts
     });
+
+    
 };
 
 
@@ -64,7 +93,7 @@ module.exports.signUp = function(req,res){
         return res.redirect('/users/profile');
     }
 
-    return res.render('user_sign_up',{
+    return res.render('reges',{
         title: "Codial | sign Up"
     });
 };
@@ -78,7 +107,7 @@ module.exports.signIn = function(req,res){
     }
 
 
-    return res.render('user_sign_in',{
+    return res.render('form',{
         title: "Codial | sign In"
     });
 };

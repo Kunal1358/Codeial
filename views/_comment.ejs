@@ -1,4 +1,4 @@
-<li id="comment-<%= comment._id %>">
+<li  class="comemnt-content" id="comment-<%= comment._id %>">
     <p>
 
         <% if(locals.user && locals.user.id == comment.user.id) { %>
@@ -11,24 +11,38 @@
 
         <% } %>
 
+        <span id="comment-content">
+         <!-- Comment Content -->
         <%= comment.content %>
-        <br> 
-        <i> Commented By: </i>
-        <small>
-            <%= comment.user.name %>
-        </small>
-        <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
-            <!-- study about the data attribute -->
-        <small>
-            <% if (locals.user){ %>
-                <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
-                    <%= comment.likes.length %> Likes
-                </a>
-            <% }else{ %>
-                <%= comment.likes.length %> Likes
-            <% } %>
-            </small>
+        </span>
 
+
+        <br>
+
+        <span id="comment-details">
+            <i> Commented By: </i>  &nbsp; User to be found!
+
+            <small>
+                <%= comment.user.name %>
+            </small>
+            <br>
+        </span>
+
+        <span id="comment-like-container" >
+            <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
+            <!-- study about the data attribute -->
+            <small>
+                <% if (locals.user){ %>
+                    <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                        <%= comment.likes.length %> Likes
+                    </a>
+                <% }else{ %>
+                    <%= comment.likes.length %> Likes
+                <% } %>
+                </small>
+    
+        </span>
+       
 
 
 

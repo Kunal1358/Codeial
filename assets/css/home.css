@@ -3,13 +3,98 @@
 }
 
 #home-container #feed-posts {
-  width: 70%;
+  margin-top: 45px;
+  width: 50%;
   padding: 10px;
+  padding-left: 60px;
+  padding-right: 40px;
 }
 
 #home-container #user-friends {
-  width: 30%;
+  margin-top: 45px;
+  width: 26%;
   padding: 10px;
   border-left: 1px solid lightgrey;
-  height: 100%;
+  /* background-color: aquamarine; */
+}
+
+#home-container #user-links {
+  margin-top: 10px;
+  width: 24%;
+  border-right: 1px solid black;
+  /* background-color: #2cac0c; */
+  display: block;
+}
+
+/* Change height */
+.sidebar li a {
+  display: flex;
+  /* Change due to chat */
+  margin-left: -11px;
+  height: 12%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
+}
+
+#d {
+  margin-left: -11px;
+}
+
+#feed {
+  margin-top: 18;
+  background-color: #222;
+  color: turquoise;
+  justify-content: center;
+  display: flex;
+  width: 745px;
+  height: 45px;
+  margin-left: -50px;
+  font-size: 30px;
+  align-items: center;
+}
+
+#feed:hover {
+  text-decoration: underline;
+  color: white;
+  text-decoration-color: turquoise;
+  text-underline-offset: 4px;
+}
+
+.un {
+  transition: 300ms;
+  border-bottom: 1px solid transparent;
+}
+
+.un:hover {
+  border-color: black;
+}
+
+#user-friends-list {
+  margin-top: 18;
+  background-color: #222;
+  color: turquoise;
+  justify-content: center;
+  display: flex;
+  width: 380px;
+  height: 45px;
+  margin-left: -2px;
+  font-size: 30px;
+  align-items: center;
+}
+
+#user-friends-list:hover {
+  text-decoration: underline;
+  color: white;
+  text-decoration-color: turquoise;
+  text-underline-offset: 4px;
+}
+
+#list-friends {
+  margin-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
 }

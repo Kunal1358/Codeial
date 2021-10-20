@@ -38,7 +38,13 @@
         </main>
 
 
-        <%- include('_footer'); %>
+        <!-- <%- include('_footer'); %> -->
+            
+        <% if (locals.user){ %>
+            <%- include('foot') -%>
+        <% }else{ %>
+                
+        <% } %>
 
         <%- script %>
 

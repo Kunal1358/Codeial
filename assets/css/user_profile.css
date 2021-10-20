@@ -1,3 +1,80 @@
-body {
-  background-color: lightblue;
+#home-container {
+  display: flex;
+  /* height: 106vh; */
+}
+
+#content {
+  margin-top: 55px;
+  /* margin-left: 400px; */
+  width: 50%;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 20px;
+}
+
+#user-links {
+  margin-top: 15px;
+  width: 24%;
+  background-color: rgba(225, 253, 189, 0.685);
+  display: block;
+  border-right: 1px solid black;
+}
+
+#profile-form {
+  border-top: 5px solid blueviolet;
+}
+
+#right-container {
+  border-left: 1px solid black;
+  margin-top: 55px;
+  width: 26%;
+  padding: 10px;
+}
+
+#codeial {
+  color: #17d0d5;
+  /* border: 10px solid red; */
+  /* background-color: chartreuse; */
+  text-decoration: none;
+  text-transform: capitalize;
+  display: flex;
+  margin-top: -11px;
+}
+
+#layout-header nav .auth-links ul {
+  display: flex;
+  list-style: none;
+  margin-top: 13px;
+}
+
+.sidebar.open input {
+  visibility: visible;
+  padding: 0 20px 0 20px;
+  width: 80%;
+  margin-left: 35px;
+}
+
+.sidebar li.profile {
+  position: relative;
+  height: 60px;
+  width: 78px;
+  margin-left: 24px;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #1d1b31;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.sidebar li a {
+  display: flex;
+  margin-left: 0;
+  height: 12%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
 }

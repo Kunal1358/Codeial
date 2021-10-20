@@ -1,6 +1,12 @@
-
-<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/dash.css">
+<link rel="stylesheet" href="/css/chat.css">
 <link rel="stylesheet" href="/css/chat_box.css">
+<link rel="stylesheet" href="/css/post.css">
+<link rel="stylesheet" href="/css/comment.css">
+<link rel="stylesheet" href="/css/home.css">
+
+
+
 
 <!-- for production  -->
 <!-- <link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
@@ -8,15 +14,30 @@
 
 <div id="home-container">
 
+    <section id="user-links">
+    
+        <% if (locals.user){ %>
+            <%- include('_dashboard') -%>
+        <% }else{ %>
+                
+        <% } %>
+        
+    </section>
+
+
     <section id="feed-posts">
 
-        <h4>Posts</h4>
+        <h4 id="feed" class="un" >Feed Posts</h4>
 
         <% if(locals.user){ %>
 
-        <form action="/posts/create" id="new-post-form" method="POST">
-            <textarea name="content" cols="30" rows="3" placeholder="Type Here..." required></textarea>
-            <input type="submit" value="Post">
+        <form action="/posts/create" class="post-form" id="new-post-form" method="POST">
+            <textarea id="post-content-textarea" name="content" cols="30" rows="3" placeholder="Type Here..." required></textarea>
+            <!-- <input type="submit" value="Post"> -->
+
+            <button type="submit" form="new-post-form" class="button" style="vertical-align:middle" value="Submit"><span>Post</span></button>
+               
+
         </form>
 
         <% } %>
@@ -36,21 +57,23 @@
     
     <section id="user-friends">
     
-        <h3>Friends</h3>
+        <h3 id="user-friends-list" class="un" >Friends</h3>
     
+
+        <div id="list-friends" >
+            
         <% for(u of all_users) { %>
     
-            <p>
-                <a href="/users/profile/<%= u.id %>"> <%= u.name %> </a>
-            </p>
+            <%- include('_friends') -%>
     
         <% } %>
+
+        </div>
      
     </section>
 
 
     <%- include('_chat_box') -%>
-
 
 </div>
 
@@ -77,6 +100,11 @@
         new ChatEngine('user-chat-box', '<%= locals.user.email %>')
     </script>
 <% } %> 
+
+
+
+
+
 
 
 
