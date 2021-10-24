@@ -1,0 +1,35 @@
+
+
+<link rel="stylesheet" href="/css/all_Users.css">
+
+<h1> All Codeial Users</h1>
+
+<div id="content-container" >
+
+    <div id="left-content" >
+        <%- include('profile_shortcuts') -%>
+    </div>
+    
+    
+    <div id="center-content"> 
+        <div id="list-friends" >
+    
+                
+            <% for(u of all_users) { %>
+        
+                <% if(u.id == profile_user.id) { %>
+        
+                    <% continue %>
+                    
+                    <%} %>
+        
+                    <%- include('addFriend') -%>
+                
+        
+            <% } %>
+        
+        </div>
+
+    </div>
+
+</div>

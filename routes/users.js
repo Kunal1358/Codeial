@@ -36,6 +36,10 @@ router.post('/account-recovery', userController.sendPasswordResetToken);
 router.get('/reset-password/:token', userController.resetPassword);
 router.post('/submit-new-password', userController.updatePassword);
 
+// Notifications
+router.get('/notifications/:id', userController.notifications);
+router.get('/allUsers/:id', userController.getAllUsers );
+router.get('/update-notification/:id', userController.updateNoti );
 
 
 

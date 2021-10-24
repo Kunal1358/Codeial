@@ -1,0 +1,52 @@
+
+body{
+    background-color: rgba(226, 226, 226, 0.822);
+}
+#noti-container{
+    background-color: rgba(226, 226, 226, 0.822);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+#left-shortcuts{
+    background-color: rgb(255 255 255);
+    border: 2px solid rgba(226, 226, 226, 0.822);
+    width: 35%;
+    height: auto;
+    margin-left: 0px;
+    padding: 0;
+    width: 350px;
+
+}
+
+#noti-content{
+        margin-left: 20px;
+        background-color: rgba(255, 255, 255, 0.822);
+        width: 760px;
+        padding-left: 30px;
+        margin-top: 0px;
+        margin-right: 51px;
+        margin-bottom: 36px;
+        overflow: scroll;
+        height: 579px;
+}
+#noti-content #read{
+    border: 2px solid rebeccapurple;
+    margin-top: 40px;
+    background-color: aliceblue;
+    width: 80%;
+    padding: 25px;
+    padding-bottom: 5px;
+    list-style: none;
+}
+
+ #not-read{
+        border: 2px solid rebeccapurple;
+        margin-top: 40px;
+        background-color: rebeccapurple;
+        width: 80%;
+        padding: 25px;
+        padding-bottom: 5px;
+        list-style: none;
+    }

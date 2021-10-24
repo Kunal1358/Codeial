@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="/css/footer.css">
 <link rel="stylesheet" href="/css/post.css">
 <link rel="stylesheet" href="/css/comment.css">
+<link rel="stylesheet" href="/css/profile_shortcuts.css">
 <link rel="stylesheet" href="/css/user_profile.css">
 
 <!-- for production -->
@@ -14,9 +15,13 @@
     <section id="user-links">
         
         <% if (locals.user){ %>
-            <%- include('_dashboardUtil') -%>
+
+            <%- include('profile_shortcuts') -%>
+            
            
         <% }else{ %>
+
+            <p> U cant see this is still to be done</p>
                 
         <% } %>
         
@@ -65,14 +70,18 @@
 
             </div>
 
-            <%- include('testFriend') -%>
-            
-        
         
         <% }else{ %>
             <!-- Else Show the list -->
             <p><%= profile_user.name %></p>
             <p><%= profile_user.email %></p>
+
+            <% for(post of posts){ %>
+                        
+                <%- include('userspost') -%> 
+
+          <%} %>
+
         
         <% } %>
     </section>
@@ -89,30 +98,21 @@
                     <p> asda </p>
             <% } %> -->
 
-            <h1> Right COntainer</h1>
+            <h1> Friends </h1>
 
 
             <div id="list-friends" >
 
-            
-                <% for(u of all_users) { %>
-    
-                    <%- include('addFriend') -%>
-            
+                <% if(user.id == profile_user.id) {%>
+
+                <%- include('testFriend') -%>
+
                 <% } %>
         
-                </div>
+            </div>
 
             
         </section>
 
 </div>
 
-<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
-<script src="js/toggle_likes.js"></script>
-<script>
-    $('.toggle-like-button').each(function(){
-        let self = this;
-        let toggleLike = new ToggleLike(self);
-    });
-</script>

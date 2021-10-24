@@ -1,0 +1,65 @@
+body{
+   
+}
+
+h1{
+    margin-top: 87px;
+    text-align: center;
+}
+
+#content-container{
+    display: flex;
+    background-color: rgb(255, 238, 206);
+    padding-top: 60px;
+    padding-bottom: 43px;
+    margin-top: 32;
+    
+}
+#center-content{
+    width: 60%;
+    background-color: #fff1f1;
+    padding: 15px;
+}
+
+#left-content{
+    width: 30%;
+    background-color: #ecf1f2;
+    padding: 15px;
+    margin-left: 41px;
+}
+
+.friend-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 10%;
+}
+
+#friends-list-container-main{
+
+    border: 3px solid rgb(209, 209, 209);
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-left: 20px;
+    margin-top: 25px;
+}
+
+#friends-list-container{
+    /* border: 3px solid black; */
+    width: 63%;
+    padding-left: 21px;
+}
+
+
+/* 
+    display: flex;
+    background-color: cyan;
+    justify-content: flex-start;
+    margin-top: 0;
+    padding-top: 60px;
+    padding-bottom: 43px;
+} */

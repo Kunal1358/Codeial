@@ -4,6 +4,10 @@ const fs = require('fs');
 const Post = require('../models/post');
 const Friendship = require('../models/friendship');
 
+const Notification = require('../models/notification');
+const mongoose= require('mongoose');
+
+
 const PasswordResetToken = require('../models/PasswordResetToken');
 const crypto = require('crypto');
 const passwordResetMailer = require('../mailers/password_reset_mailer');
@@ -183,6 +187,141 @@ module.exports.destroySession = function(req,res){
     req.logout();
     req.flash('success', 'You have logged out!');  
     return res.redirect('/');
+
+}
+
+
+
+module.exports.getAllUsers = async function(req,res){
+
+  let users = await User.find({});
+  let profileUser = await User.findById(req.params.id);
+
+  return res.render('all_Users',{
+    title: "Users List",
+    all_users: users,
+    profile_user: profileUser
+  })
+}
+
+
+
+
+// Notifications
+module.exports.notifications = async function(req,res){
+
+
+  const ObjectId = mongoose.Types.ObjectId;
+  console.log(req.params.id);
+  console.log(req.user.id);
+
+  // Check if profile user is same as Login User
+  if(req.params.id == req.user.id){ 
+    console.log("safe User");
+
+    let notificationUser = await User.findOne({_id: ObjectId(req.user.id)});
+    // console.log("Noti User",notificationUser.id);
+
+    let notifications =  await Notification.find({to_user: ObjectId(req.user.id)}).sort('-createdAt');
+    // console.log(notifications);
+
+    let all_notificationsUsers = await User.find({});
+    let profileUser = await User.findById(req.params.id,);
+
+    return res.render('Notification',{
+      title: "Noty",
+      notificationUser: notificationUser,
+      notifications: notifications,
+      all_notificationsUsers: all_notificationsUsers,
+      profile_user: profileUser
+
+    });
+  
+  
+
+  }else{
+    req.flash('error','Invalid Profile User' );
+    console.log("You cannot Open this");
+    return res.redirect('back');
+  }
+
+}
+
+
+
+module.exports.updateNoti = async function(req,res){
+  const ObjectId = mongoose.Types.ObjectId;
+
+  const myNotifications = await Notification.find({to_user: req.user.id});
+ 
+
+  // For single updation
+  // let notificationRead = await Notification.findByIdAndUpdate(
+  //   {_id:  ObjectId('6173ddc05666aaa808cfedb0')},
+  //   {'isRead': true} // Updating Value of is Read
+  // );
+  
+
+  // Updating isRead to true where it is false
+    let notificationRead = await Notification.updateMany(
+    { isRead: false, to_user: ObjectId(req.user.id) },
+    {"$set":{'isRead': true}},
+    { multi: true }
+
+  );
+
+  console.log(notificationRead);
+
+  console.log("finish")
+
+}
+
+
+module.exports.as = async function(req,res){
+
+  
+  const ObjectId = mongoose.Types.ObjectId;
+  console.log(req.params.id);
+  console.log(req.user.id);
+
+  // Check if profile user is same as Login User
+  if(req.params.id == req.user.id){ 
+    console.log("safe User");
+  }else{
+    req.flash('error','Invalid Profile User' );
+    console.log("You cannot Open this");
+    return res.redirect('back');
+  }
+
+
+  // let notificationUser = User.findById(req.params.id);
+  // let notificationUser = await User.findOne({id: req.user.id});
+
+  let notificationUser = await User.findOne({_id: ObjectId(req.user.id)});
+  // {_id: ObjectId('617247d268563b045b1ce7f3')}
+  // console.log("notificationUser\n", notificationUser);
+  // console.log("notificationUser\n", notificationUser.name);
+  console.log("notificationUser\n", notificationUser.id);
+
+  try{
+
+    let newNotification = await Notification.create({
+      user: notificationUser.id,
+      type: "Post",
+      isRead: false,
+      content: "SomeOne lIked Your Post"
+    });        
+
+    console.log(newNotification)
+
+    req.flash('success', 'friendship Added!');
+    return res.redirect('back');
+  
+    
+  }catch(err){
+    req.flash('error', err);
+    console.log(err);
+}
 
 }
 

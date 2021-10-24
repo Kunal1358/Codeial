@@ -13,14 +13,14 @@
 
 </style>
 
-<h1> Friend List</h1>
+<h1> Friend List -> <%= profile_user.name %> </h1>
 
 <ul>
     <% for(f of friend){ %>
         <% for(uf of user.friendships){ %>
             <% if(f.id == uf){ %>
                  
-                <li> From->  <%= f.from_user %>  || To -> <%= f.to_user %> </li>
+                <!-- <li> From->  <%= f.from_user %>  || To -> <%= f.to_user %> </li> -->
 
                 <% if(profile_user.id == f.to_user ) {%>
 
@@ -28,7 +28,12 @@
 
                         <% if( f.from_user == uf.id  ){ %>
     
-                        <li id="fl" > <%= uf.name %> | <%= uf.id %>
+                        <li id="fl" >
+                             <!-- <%= uf.name %>  -->
+
+                            <a href="/users/profile/<%= uf.id %>"> <%= uf.name %> </a>
+
+
                         <!-- TO change Route -->
 
                                 <a class="delete" href="/friendships/delete/req/<%= uf.id %>"> 
@@ -50,8 +55,11 @@
 
                     <% if( (f.to_user == uf.id) && (profile_user.id != f.to_user)  ){ %>
 
-                    <li id="fl" > <%= uf.name %>   
+                    <li id="fl" >
+                         <!-- <%= uf.name %>    -->
                     
+                         <a href="/users/profile/<%= uf.id %>"> <%= uf.name %> </a>
+                         
                         <a class="delete" href="/friendships/delete/<%= uf.id %>"> 
         
                             <i class="fa fa-trash fa-3x" aria-hidden="true"></i>

@@ -1,0 +1,37 @@
+
+#Profile-shortcuts{
+    border: 5px solid rgb(188, 192, 188);
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#head{
+    /* border: 5px solid rgb(1, 81, 230); */
+    height: 70px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin-left: auto;
+    padding-left: 5px;
+    border-bottom: 5px solid rgb(158, 145, 145) !important;
+}
+
+#shortcuts-links{
+    /* border: 5px solid red; */
+    background-color: rgb(188, 192, 188);
+}
+#Profile-shortcuts a{
+       text-decoration: none;
+       display: flex;
+       align-content: center;
+       justify-content: space-between;
+       align-items: center;
+       height: 60px;
+       margin-left: 20px;
+       padding-left: 10px;
+       width: fit-content;
+       padding-right: 10px;
+       border-bottom: 2px solid red;
+
+}

@@ -5,50 +5,12 @@ const commentEmailWorker = require('../worker/comment_email_worker');
 const queue = require('../config/kue');
 const Like = require('../models/like');
 
+const User = require('../models/users');
 
-// module.exports.create = async function(req, res){
 
-//     try{
+const Notification = require('../models/notification');
+const mongoose= require('mongoose');
 
-//         let post = await Post.findById(req.body.post);
-
-//         if (post){
-//             let comment = await Comment.create({
-//                 content: req.body.content,
-//                 post: req.body.post,
-//                 user: req.user._id
-//             });
-
-//             post.comments.push(comment);
-//             post.save();
-//             console.log("************************************* Before 0");
-//             comment = await comment.populate('user', 'name email').execPopulate();
-//             console.log("************************************* Before");
-//             commentMailer.newComment(comment);
-//             console.log("************************************* After");
-
-//             if (req.xhr){
-
-//                 return res.status(200).json({
-//                     data: {
-//                         comment: comment
-//                     },
-//                     message: "Post created!"
-//                 });
-//             }
-
-//             req.flash('success', 'Comment published!');
-
-//             res.redirect('/');
-
-//         }
-
-//     }catch(err){
-//         req.flash('error', err);
-//         return;
-//     }       
-
-// }
 
 module.exports.create = async function(req, res){
 
@@ -68,20 +30,57 @@ module.exports.create = async function(req, res){
             // TO solve error
             //comment = await comment.populate('user', 'name email').execPopulate();
 
-            console.log(comment);
+            // console.log(comment);
             //  commentMailer.newComment(comment);
 
-            // Create Comment Email 
+            // Web Notifications
+// **********************************************************************************************************************            
+
+
+            let commentedPost = await Post.findById(req.body.post);
+            let commentedPostUser = commentedPost.user;
+
+            let s =""+(commentedPostUser);
+            var fetchedUser = s.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "");
+
+            console.log("Fetched Id ->",fetchedUser);// Post User ID
+
+            let fetchedUserModel = await User.findById(fetchedUser);
+            console.log(fetchedUserModel.name)
+
+            let content;
+            if(req.user.id == fetchedUserModel.id){
+                 content = "You have successfully commented your post"
+            }else{
+                 content = req.user.name +" "+ "Commented On Your Post";
+            }
+
+            // Main 
+            let newNotification = await Notification.create({
+                from_user: req.user.id, // Profile User
+                to_user:fetchedUser, // Post/comment  id
+                type: 'New Comment',
+                isRead: false,
+                content: content,
+                contentId: req.body.post
+              });        
+
+              
+              fetchedUserModel.notifications.push(newNotification);
+              
+              fetchedUserModel.save();
+
+
+// **********************************************************************************************************************            
+
+            // Email Job
             let job = queue.create('newComment', comment).save(function(err){
                 if(err){console.log("Error in creating a queue \n", err); return; }
 
                 console.log("Job enqued ", job.id);
             })
 
-
             if (req.xhr){
-                
-    
                 return res.status(200).json({
                     data: {
                         comment: comment
@@ -119,12 +118,12 @@ module.exports.destroy = async function(req,res){
              // CHANGE :: destroy the associated likes for this comment
              await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
 
-             // Delete Comment Email
              let job = queue.create('deleteComment', comment).save(function(err){
                 if(err){console.log("Error in creating a queue \n", err); return; }
 
                 console.log("Job enqued ", job.id);
             })
+
 
             // send the comment id which was deleted back to the views
             if (req.xhr){

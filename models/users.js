@@ -27,6 +27,12 @@ const userSchema = new mongoose.Schema({
             type: mongoose.Types.ObjectId,
             ref: 'Friendship'
         }
+    ],
+    notifications: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Notification'
+        }
     ]
 },{
     timestamps:true

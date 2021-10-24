@@ -1,4 +1,5 @@
-// create a class to toggle likes when a link is clicked, using AJAX
+// CHANGE :: create a class to toggle likes when a link is clicked, using AJAX
+
 
 class ToggleLike{
     constructor(toggleElement){
@@ -11,6 +12,8 @@ class ToggleLike{
         $(this.toggler).click(function(e){
             e.preventDefault();
             let self = this;
+            
+            // let notificationContainer =$('#noti-content');
 
             // this is a new way of writing ajax which you might've studied, it looks like the same as promises
             $.ajax({
@@ -19,11 +22,42 @@ class ToggleLike{
             })
             .done(function(data) {
                 let likesCount = parseInt($(self).attr('data-likes'));
+
+                console.log(data)
+
                 console.log(likesCount);
                 if (data.data.deleted == true){
                     likesCount -= 1;
                     
                 }else{
+// *******************************************************************************************
+
+                    // TODO add notification by ajax
+
+                //     console.log("Calling function")
+                //     let newNotification = new Notifications(); // calling the ctr
+                //    let print =  newNotification.sendNotifications();
+
+                //     console.log('printing ', print );
+
+                //     console.log("Like")
+                //     // console.log($('#posts-list-container>'));
+                //     console.log($('#list-of-items'));
+
+                //     $('.list-of-items>ul').prepend(print);
+
+                //     // Change when final notification
+                //     new Noty({
+                //         theme: 'relax',
+                //         text: "Noti Send!",
+                //         type: 'success',
+                //         layout: 'topRight',
+                //         timeout: 1500
+                        
+                //     }).show();
+
+
+// *******************************************************************************************
                     likesCount += 1;
                 }
 
@@ -39,4 +73,26 @@ class ToggleLike{
 
         });
     }
+
 }
+// *******************************************************************************************
+
+// class Notifications{
+
+//     constructor(){
+//         this.sendNotifications();
+//     }
+
+//     sendNotifications(){
+
+//         console.log("-------------------------------------------------------------------------------")
+//         console.log("Inside Send Noti ")
+//         console.log("-------------------------------------------------------------------------------")
+
+
+//         // return $('<li> Wowrking </li>');
+//         return $('<li> Wowrking </li>');
+
+//     }
+    
+// }

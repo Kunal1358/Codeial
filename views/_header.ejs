@@ -12,7 +12,7 @@
             <ul>
                 <% if (locals.user){ %>
                 <li>
-                    <a class="link un" href="/users/profile"><%= user.name %></a>
+                    <a class="link un" href="/users/profile/<%= user.id%>"><%= user.name %></a>
                 </li>
                 <li>
                     <a  class="link un" href="/users/sign-out">Sign Out</a>

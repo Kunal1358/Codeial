@@ -226,6 +226,102 @@ module.exports.createFriendship = async function(req, res){
 }
 
 
+module.exports.createFriendship = async function(req, res){
+
+    console.log("Creating Friend");
+    const ObjectId = mongoose.Types.ObjectId;
+
+
+    console.log( "Logged in User ID", req.user.id);
+    // req.user = logged in Users
+    // req sender
+
+    console.log( "Req", req.params.id);
+    // profile User 
+    // Friend to be added
+
+    try{
+
+        let user = await User.findById(req.user.id); // to do id same as from_user
+        let user_to_user = await User.findById(req.params.id); // to do id same as from_user
+
+        console.log(user.id);
+        console.log(user_to_user.id);
+
+
+        console.log("-----------------------------------------------------------------------------------");
+        console.log(mongoose.Types.ObjectId.isValid(req.params.id));
+        console.log("-----------------------------------------------------------------------------------");
+
+    let f2= await Friendship.findOne({ from_user:ObjectId(req.user.id) , to_user:ObjectId(req.params.id)});
+
+    console.log(f2);
+
+    if(f2 == null){
+        console.log("----------------------------------------------------------------------------------- Not Exists ");
+    }else{
+        console.log(" Exists  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++s  Exists");
+    }
+
+    if(req.user.id==req.params.id){
+        console.log("Outside");
+        req.flash('error', 'Now Allowed !!!');
+        return res.redirect('back');
+    }
+
+    if(f2==null){
+        console.log("GOTCHA");
+        
+        let new_friendship = await Friendship.create({
+            from_user: req.user.id, // logged in user
+            to_user: req.params.id // profile user
+        });
+        console.log(" ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6 ");
+        console.log(user);
+
+        user.friendships.push(new_friendship); // adding in user Model friend Array
+
+        user_to_user.friendships.push(new_friendship);// added to user 
+        
+        user.save();
+        user_to_user.save();
+       
+        if (req.xhr){
+            return res.status(200).json({
+                data: {
+                    friendship: friendship
+                },
+                message: "friendship created!"
+            });
+        }
+
+        req.flash('success', 'friendship Added!');
+        return res.redirect('back');
+
+        
+
+
+    }else{
+        console.log("Outside");
+        req.flash('error', 'friendship alredy exists!');
+        return res.redirect('back');
+    }
+
+
+    }catch(err){
+        req.flash('error', err);
+        console.log(err);
+    }
+
+
+
+    return res.render('friend',{
+        title: "Create"
+    });
+}
+
+
+
 // module.exports.createFriendship = function(req, res){
 //     console.log("Indie ***********************************************************************************");
 

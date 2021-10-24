@@ -1,0 +1,107 @@
+
+<link rel="stylesheet" href="/css/notifications.css">
+
+
+<h1>
+    Notification Pannel
+</h1>
+
+
+<div id="noti-container" >
+    <div id="left-shortcuts" > 
+        <%- include('profile_shortcuts') -%>
+    </div>
+    
+    <!--  Change Style of Button -->
+
+
+
+<a href="/users/update-notification/<%= locals.user.id  %>" id="updateNoti" style="display: none" >
+    button
+</a>
+
+    <br> <br> <br>
+    
+<div id="noti-content">
+       <h1>  <%=notificationUser.name %>'s notifications </h1>
+        <ul>
+            <% for(noti of notifications){ %>
+
+                <% if(!noti.isRead){ %>
+                    
+                    <li id="not-read" > <%= noti.content %>
+
+                        <div id="date-time-container" >
+                            <p> <%= ((noti.createdAt.getHours() + 24) % 12 || 12 )
+                                 +":"+ noti.createdAt.getMinutes()
+                                 +" "+((noti.createdAt.getHours()) >= 12 ? 'pm' : 'am')                        
+                                %> </p>
+                            <p><%= noti.createdAt.getDate()
+                                +"-"+ noti.createdAt.getMonth() 
+                                +"-"+ noti.createdAt.getFullYear()
+                                %>
+                            </p>    
+                        </div>
+                        <p><%= noti.isRead%></p>
+                        
+                    </li>
+                    
+                <%}else{%>
+
+                    <li id="read" > <%= noti.content %>
+
+                        <div id="date-time-container" >
+                            <p> <%= ((noti.createdAt.getHours() + 24) % 12 || 12 )
+                                 +":"+ noti.createdAt.getMinutes()
+                                 +" "+((noti.createdAt.getHours()) >= 12 ? 'pm' : 'am')                        
+                                %> </p>
+                            <p><%= noti.createdAt.getDate()
+                                +"-"+ noti.createdAt.getMonth() 
+                                +"-"+ noti.createdAt.getFullYear()
+                                %>
+                            </p>    
+                        </div>
+                        <p><%= noti.isRead%></p>
+    
+                    </li>
+
+                <% } %>
+
+
+                
+
+
+            <% } %>
+        </ul>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+<script src = "/js/notifications.js"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+// window.alert("Workisdfsdfsfng");
+$(window).load(function(){
+    // window.alert("Worki-----------ng");
+    // console.log('Wrking================================================');
+    myClick();
+});
+
+
+function myClick() {
+  setTimeout(
+    function() {
+        document.getElementById('updateNoti').click();
+    }, 5000);
+}
+
+</script> 

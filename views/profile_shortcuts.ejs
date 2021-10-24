@@ -1,0 +1,36 @@
+
+<link rel="stylesheet" href="/css/profile_shortcuts.css">
+
+
+
+<div id="Profile-shortcuts">
+
+    <h2 id="head" >Shortcuts</h2>
+
+    <div id="shortcuts-links" >
+
+        <div id="feed-post" >
+            <a href="/"> Home </a>
+        </div>
+        <div>
+            <a href="/users/allUsers/<%= profile_user.id%>"> People </a>
+        </div>
+
+        <div id="Notification">
+            <a href="/users/notifications/<%= user.id%>"> Notification </a>
+        </div id="People">
+        
+    </div>
+    
+</div>
+
+
+
+<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
+<script src="/js/toggle_likes.js"></script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>

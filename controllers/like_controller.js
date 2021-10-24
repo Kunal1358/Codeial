@@ -2,10 +2,13 @@ const Like = require('../models/like');
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const queue = require('../config/kue');
+const User = require('../models/users');
 
 const likeMailer = require('../mailers/likes_mailer');
 const likeEmailWorker = require('../worker/like_email_worker');
 
+const Notification = require('../models/notification');
+const mongoose= require('mongoose');
 
 module.exports.toggleLike = async function(req, res){
     try{
@@ -48,6 +51,91 @@ module.exports.toggleLike = async function(req, res){
 
             likeable.likes.push(newLike._id);
             likeable.save();
+
+            // **********************************************************************************************************************
+            // Web Notifications
+
+            const ObjectId = mongoose.Types.ObjectId;
+            let notificationUser = await User.findOne({_id: ObjectId(req.user.id)});
+            console.log("notificationUser\n", notificationUser.id);
+
+            
+            const TypeofContent = req.query.type;
+            const userName = req.user.name;
+            let content;
+
+            let post_comment_User;
+            if(req.query.type == 'Post'){
+                 post_comment_User = await Post.findOne({_id: ObjectId(req.query.id)});
+            }else{
+                 post_comment_User = await Comment.findOne({_id: ObjectId(req.query.id)});
+            }
+
+
+            let s =""+(post_comment_User.user);
+                var fetchedUser_pc = s.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "");
+
+            // console.log("fetchedUser_pc",fetchedUser_pc);
+
+            // console.log("Printing\n",post_comment_User.user);
+
+            const notificationUser_pc = ""+notificationUser.id;
+
+            if(notificationUser_pc == fetchedUser_pc){
+
+                content= "You have successfully Liked Your "+ TypeofContent;
+
+            }else{
+                content= userName + " Liked Your "+ TypeofContent;
+            }
+  
+            try{
+
+                let newNotification = await Notification.create({
+                  from_user: req.user.id, // Profile User
+                  to_user:post_comment_User.user, // Post/comment  id
+                  type: req.query.type+ " Liked",
+                  isRead: false,
+                  content: content,
+                  contentId: req.query.id
+                });        
+
+                // console.log(newNotification);
+
+                // Adding Notification to Users 
+
+                // let usersPost = await Post.findOne({_id: ObjectId(req.query.id)});
+                let usersPost;
+
+
+                if(req.query.type == 'Post'){
+                     usersPost = await Post.findById(req.query.id);
+               }else{
+                    usersPost = await Comment.findById(req.query.id);
+               }
+
+                let s =""+(usersPost.user);
+                var fetchedUser = s.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "");
+
+                console.log("Fetched",fetchedUser);
+
+                let fetchedUserModel = await User.findOne({_id: ObjectId(fetchedUser)});
+
+                fetchedUserModel.notifications.push(newNotification);
+                fetchedUserModel.save();
+
+            
+                // req.flash('success', 'Notification Added!');           
+                
+              }catch(err){
+                req.flash('error', "Internal Server Error");
+                console.log(err);
+            }
+
+            console.log("finish")
+
+// **********************************************************************************************************************            
+
 
             // Email notification
             // If user like the post then send email post liked
