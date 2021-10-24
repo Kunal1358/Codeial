@@ -1,0 +1,77 @@
+
+<style>
+    #fl {
+        margin-top: 10px;
+    /* border: 2px solid chartreuse; */
+    display: flex;
+    justify-content: space-between;
+    }
+
+    .delete{
+        border:1px solid rgb(23, 245, 34);
+    }
+
+</style>
+
+<h1> Friend List</h1>
+
+<ul>
+    <% for(f of friend){ %>
+        <% for(uf of user.friendships){ %>
+            <% if(f.id == uf){ %>
+                 
+                <li> From->  <%= f.from_user %>  || To -> <%= f.to_user %> </li>
+
+                <% if(profile_user.id == f.to_user ) {%>
+
+                    <% for(uf of all_users){ %>
+
+                        <% if( f.from_user == uf.id  ){ %>
+    
+                        <li id="fl" > <%= uf.name %> | <%= uf.id %>
+                        <!-- TO change Route -->
+
+                                <a class="delete" href="/friendships/delete/req/<%= uf.id %>"> 
+
+                                <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                    
+                            </a>
+
+                        </li>
+    
+                        <% } %>
+
+                    <%} %>
+                   
+
+                <% } %>
+
+                <% for(uf of all_users){ %>
+
+                    <% if( (f.to_user == uf.id) && (profile_user.id != f.to_user)  ){ %>
+
+                    <li id="fl" > <%= uf.name %>   
+                    
+                        <a class="delete" href="/friendships/delete/<%= uf.id %>"> 
+        
+                            <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                
+                        </a>
+
+                    </li>
+
+                    <% } %>
+
+                    
+
+
+                <%} %>
+
+
+
+                 
+            <% } %>
+        <%} %>
+    <%} %>
+
+</ul> 

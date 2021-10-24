@@ -2,38 +2,74 @@ const User = require('../models/users');
 const path = require('path');
 const fs = require('fs');
 const Post = require('../models/post');
+const Friendship = require('../models/friendship');
 
 const PasswordResetToken = require('../models/PasswordResetToken');
 const crypto = require('crypto');
 const passwordResetMailer = require('../mailers/password_reset_mailer');
 
 
-module.exports.profile = async function(req,res){
+// module.exports.profile = async function(req,res){
 
-    let user = await User.findById(req.params.id,);
+//     let user = await User.findById(req.params.id,);
 
-    // finding post
-    let posts = await Post.find({'user':(req.params.id)})
-    .sort('-createdAt')
-    .populate('user')
-    .populate({
-        path: 'comments',
-        populate: {
-            path: 'user'
-        },
-        populate: { // populated likes
-            path: 'likes'
-        }
-    }).populate('likes');
+//     // finding post
+//     let posts = await Post.find({'user':(req.params.id)})
+//     .sort('-createdAt')
+//     .populate('user')
+//     .populate({
+//         path: 'comments',
+//         populate: {
+//             path: 'user'
+//         },
+//         populate: { // populated likes
+//             path: 'likes'
+//         }
+//     }).populate('likes');
 
 
-    return res.render('user_profile',{
-        title: "User Profile",
-        profile_user: user,
-        posts: posts
-    });
+//     return res.render('user_profile',{
+//         title: "User Profile",
+//         profile_user: user,
+//         posts: posts
+//     });
 
     
+// };
+
+// Profile
+module.exports.profile = async function(req,res){
+
+
+  let profileUser = await User.findById(req.params.id,);
+
+  // finding post
+  let posts = await Post.find({'user':(req.params.id)})
+  .sort('-createdAt')
+  .populate('user')
+  .populate({
+      path: 'comments',
+      populate: {
+          path: 'user'
+      },
+      populate: { // populated likes
+          path: 'likes'
+      }
+  }).populate('likes');
+
+
+  let users = await User.find({});
+  let friends = await Friendship.find({});
+
+  return res.render('user_profile',{
+      title: "User Profile",
+      profile_user: profileUser,
+      posts: posts,
+      all_users: users,
+      friend: friends
+  });
+
+  
 };
 
 

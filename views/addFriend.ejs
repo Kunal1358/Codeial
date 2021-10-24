@@ -1,0 +1,44 @@
+<script src="https://kit.fontawesome.com/3e77aa9250.js" crossorigin="anonymous"></script>
+
+
+<style>
+#friends-list-container{
+    margin-top:50px;
+}
+
+</style>
+
+<!-- <p> all User-></p>
+<br>
+<p> <%= u%> </p> -->
+
+<div id="friends-list-container-main" >
+
+    <p id="friends-list-container" >
+
+    Name ->     &nbsp;&nbsp;&nbsp; &nbsp;
+
+        <a href="/users/profile/<%= u.id %>"> <%= u.name %> </a>
+        <br>
+
+        <a href="/friendships/create/<%= u.id %>"> 
+        
+            <i class="fa fa-plus fa-3x" aria-hidden="true"></i>
+        </a>&nbsp;&nbsp;&nbsp; &nbsp;
+
+        <a href="/friendships/delete/<%= u.id %>"> 
+        
+            <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+
+        </a>
+
+        
+
+        <br> <p> <%= u.id %> </p>
+
+
+
+
+    </p>
+
+</div>

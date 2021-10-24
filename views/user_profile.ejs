@@ -24,6 +24,10 @@
     
 <section id='content'>
 
+
+    <br> <br>
+
+
     <img src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
     
     <br><br>
@@ -60,6 +64,9 @@
                 </ul>
 
             </div>
+
+            <%- include('testFriend') -%>
+            
         
         
         <% }else{ %>
@@ -83,7 +90,29 @@
             <% } %> -->
 
             <h1> Right COntainer</h1>
+
+
+            <div id="list-friends" >
+
+            
+                <% for(u of all_users) { %>
+    
+                    <%- include('addFriend') -%>
+            
+                <% } %>
+        
+                </div>
+
             
         </section>
 
 </div>
+
+<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
+<script src="js/toggle_likes.js"></script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>
