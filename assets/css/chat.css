@@ -16,8 +16,7 @@ ul li{
   position: fixed;
   margin: 1em;
   right: 0;
-  z-index: 998;
-  
+  z-index: 998;  
 }
 
 .fab {
@@ -229,8 +228,18 @@ ul li{
 }
 .chat_body p {
   padding: 20px;
-  color: #888
+  color: #888;
+  text-align: initial;
 }
+
+#ban{
+  border-top: 2px solid #e5ff0a;
+    display: block;
+    padding-top: 7;
+    margin-top: -7px;
+}
+
+
 .chat_body a {
   width: 10%;
   text-align: center;
@@ -415,11 +424,27 @@ ul li{
     opacity: 0.3;
 }
 .status2 {
-    margin: -10px 20px 0 0;
-    float: right;
-    display: block;
+  margin: -10px 0 0px -20px;
+    float: left;
+    /* display: block; */
     font-size: 11px;
     opacity: 0.3;
+    text-align: start;
+    /* border: 2px solid red; */
+    width: -webkit-fill-available;
+    padding-left: 20px;
+}
+
+
+.status3{
+  margin: -10px 0 0px -20px;
+  float: right;
+  font-size: 11px;
+  opacity: 0.3;
+  text-align: end;
+  /* border: 2px solid red; */
+  width: -webkit-fill-available;
+  padding-right: 20px;
 }
 .chat .chat_converse .chat_msg_item .chat_avatar {
   position: absolute;
@@ -444,7 +469,7 @@ ul li{
 }
 
 .chat .chat_converse .chat_msg_item.chat_msg_item_admin {
-  margin-left: 60px;
+  margin-left: 0px;
   float: left;
   background: rgba(0, 0, 0, 0.03);
   color: #666;

@@ -1,8 +1,12 @@
 
+console.log("Inside chat engine");
+
 class ChatEngine{
-    constructor(chatBoxId, userEmail){
+    //  chat box id change 
+    constructor(chatBoxId, userEmail,userName){
         this.chatBox = $(`#${chatBoxId}`);
         this.userEmail = userEmail;
+        this.userName = userName;
 
      // this.socket = io('http://localhost:5000');
         this.socket = io('http://localhost:5000', { transports : ['websocket'] });
@@ -35,43 +39,61 @@ class ChatEngine{
         });
 
         // Send a message on clicking the send message button
-        $('#send-message').click(function(){
-            let msg = $('#chat-message-input').val();
+        $('#fab_send').click(function(){
+            let msg = $('#chatSend').val();
 
             if (msg != ''){
                 self.socket.emit('send_message', {
                     message: msg,
                     user_email: self.userEmail,
+                    user_name: self.userName,
                     chatroom: 'codeial'
                 });
             }
         });
 
-        // Check if recive message event is happening or not
+        // Check if recive message event is happening or not     
+
         self.socket.on('receive_message', function(data){
             console.log('message received', data.message);
 
 
             let newMessage = $('<li>');
 
-            let messageType = 'other-message';
+            let newMessageContainer = $('<div>');
+
+            let status = $('<span>')
+
+
+            let statusStyle = 'status2';
+            let messageType = 'chat_msg_item chat_msg_item_admin ';
 
             if (data.user_email == self.userEmail){
-                messageType = 'self-message';
+                messageType = 'chat_msg_item chat_msg_item_user';
+                statusStyle = 'status';
             }
 
-            newMessage.append($('<span>', {
+            newMessageContainer.append($('<span>', {
                 'html': data.message
             }));
 
-            newMessage.append($('<sub>', {
-                'html': data.user_email
-            }));
+            newMessageContainer.addClass(messageType);
 
-            newMessage.addClass(messageType);
+            
+            status.append($('<sub>', {
+                // 'html': data.user_email
+                'html': data.user_name
+            }).addClass(statusStyle));
 
-            $('#chat-messages-list').append(newMessage);
+
+
+            $('#chat-messages-list').append(newMessageContainer).append(status);
+
+
+
         })
+
+
 
 
 
