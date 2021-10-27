@@ -1,17 +1,10 @@
 #post-content-textarea {
   resize: none;
-  /* border: 2px solid red; */
   overflow: auto;
   display: inline-block;
   margin-top: 8px;
   padding: 7px;
 
-
-
-}
-
-.vfx{
-  border: 12px solid red;
 }
 
 .post-content-container {
@@ -24,29 +17,25 @@
   margin-bottom: 30px;
   border-left: none !important;
   background: #c0f0f1;
-  
 
   align-items: center;
-  /* #252830; */
-  /* background: rgba(255, 255, 255, 0.375); */
 
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.125);
-
   box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
+  
 }
 
 #post-content {
-  /* border: 2px solid red; */
+
   display: inline-block;
   margin-top: 8px;
   padding: 7px;
 
-
 }
 
 .post-form {
-  /* border-bottom: 2px solid lightslategrey; */
+
   border-bottom: 2px solid lightslategrey;
   margin-top: 30px;
   display: flex;
@@ -64,7 +53,6 @@
 #post-details {
   display: block;
   margin-top: 3px;
-  /* border: 2px solid red; */
   margin-left: 19px;
   width: 250px;
   border-left: 2px solid lightslategray;
@@ -72,8 +60,7 @@
 }
 
 #post-like-container {
-  /* 
-    border:2px solid red; */
+
   display: block;
   margin-top: -15px;
   margin-left: 10px;
@@ -131,7 +118,6 @@ input {
 
 
 .toggle-like-button{
-  /* border: 2px solid red; */
   font-size: 25px;
   padding-left: 3px;
   text-decoration: none;

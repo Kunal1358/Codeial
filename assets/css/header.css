@@ -1,6 +1,5 @@
 #layout-header nav {
   font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
-  /* text-transform: uppercase; */
   position: absolute;
   top: 0;
   left: 0;
@@ -13,47 +12,6 @@
   box-shadow: 1px 1px 1px 1px lightgrey;
   height: 55px;
   border-bottom: 2px solid grey;
-  /* border: 3px solid red; */
-
-    
-
-
-
-}
-
-.link {
-  color: white;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: 1ee2e7;
-}
-
-.link:hover,
-.link:focus,
-.link:active,
-.link.active {
-  color: #17d0d5;
-  text-decoration: underline;
-  text-decoration-color: white;
-  text-underline-offset: 4px;
-}
-
-#codeial {
-  color: #9870e8;
-  /* background-color: chartreuse; */
-  text-decoration: none;
-  font-size: 33px;
-  text-transform: capitalize;
-}
-
-#codeial:hover {
-  color: turquoise;
-  text-decoration: underline;
-  text-decoration-color: white;
-  text-underline-offset: 4px;
-  text-transform: capitalize;
 }
 
 #layout-header nav .auth-links ul {
@@ -66,7 +24,6 @@
   margin-right: 25px;
   width: max-content;
   font-size: 20px;
-
 }
 
 #layout-header nav .mini-logo p {
@@ -75,6 +32,55 @@
   margin-top: 17px;
   padding-left: 5px;
   color: turquoise;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: 1ee2e7;
+  color: #17d0d5;
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+}
+
+.link:focus {
+  color: #17d0d5;
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+}
+
+.link:active {
+  color: #17d0d5;
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+}
+
+.link.active {
+  color: #17d0d5;
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+}
+
+#codeial {
+  color: #9870e8;
+  text-decoration: none;
+  font-size: 33px;
+  text-transform: capitalize;
+}
+
+#codeial:hover {
+  color: turquoise;
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+  text-transform: capitalize;
 }
 
 .un {

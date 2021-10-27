@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap";
 * {
   margin: 0;
   padding: 0;
@@ -60,23 +60,6 @@ form .input-box span.details {
   margin-bottom: 5px;
 }
 
-.user-details .input-box input {
-  height: 45px;
-  width: 100%;
-  outline: none;
-  font-size: 16px;
-  border-radius: 5px;
-  padding-left: 15px;
-  border: 1px solid #ccc;
-  border-bottom-width: 2px;
-  transition: all 0.3s ease;
-}
-
-.user-details .input-box input:focus,
-.user-details .input-box input:valid {
-  border-color: #9b59b6;
-}
-
 form .gender-details .gender-title {
   font-size: 20px;
   font-weight: 500;
@@ -105,13 +88,6 @@ form .category label .dot {
   transition: all 0.3s ease;
 }
 
-#dot-1:checked ~ .category label .one,
-#dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three {
-  background: #9b59b6;
-  border-color: #d9d9d9;
-}
-
 form input[type="radio"] {
   display: none;
 }
@@ -136,8 +112,56 @@ form .button input {
 }
 
 form .button input:hover {
-  /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+
+.user-details .input-box input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.user-details .input-box input:focus {
+  border-color: #9b59b6;
+}
+
+.user-details .input-box input:valid {
+  border-color: #9b59b6;
+}
+
+#dot-1:checked ~ .category label .one {
+  background: #9b59b6;
+  border-color: #d9d9d9;
+}
+
+#dot-2:checked ~ .category label .two {
+  background: #9b59b6;
+  border-color: #d9d9d9;
+}
+
+#dot-3:checked ~ .category label .three {
+  background: #9b59b6;
+  border-color: #d9d9d9;
+}
+
+#codeial {
+  color: #17d0d5;
+  text-decoration: none;
+  text-transform: capitalize;
+  display: flex;
+  margin-top: -16px;
+}
+
+#layout-header nav .auth-links ul {
+  display: flex;
+  list-style: none;
+  margin-top: 13px;
 }
 
 @media (max-width: 584px) {
@@ -164,20 +188,4 @@ form .button input:hover {
   .container .content .category {
     flex-direction: column;
   }
-}
-
-#codeial {
-  color: #17d0d5;
-  /* border: 10px solid red; */
-  /* background-color: chartreuse; */
-  text-decoration: none;
-  text-transform: capitalize;
-  display: flex;
-  margin-top: -16px;
-}
-
-#layout-header nav .auth-links ul {
-  display: flex;
-  list-style: none;
-  margin-top: 13px;
 }

@@ -9,7 +9,7 @@ exports.postLike = (like) => {
     nodeMailer.transporter.sendMail({
        from: 'toyboxtb001@gmail.com',
        // TODO change TO
-       to: 'toyboxtb001@gmail.com',
+       to: 'toyboxtb001@gmail.com', // TODO CHange here
        subject: "Someone Liked your Post!!!",
        html: htmlString
     }, (err, info) => {

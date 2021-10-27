@@ -1,7 +1,4 @@
 body{
-   /* background-color: #252830; */
-   /* background-color: rgb(207, 43, 43); */
-   /* background-color:chartreuse; */
    background:black;
    color: #fff;
 }
@@ -31,7 +28,6 @@ h1{
 }
 #center-content{
     width: 60%;
-    /* background-color: #fff1f1; */
     padding: 15px;
     background: linear-gradient(109.61deg,#4c4f5a 4.26%,#202125 84.84%);
     color: white;
@@ -42,12 +38,9 @@ h1{
 
 #left-content{
     width: 30%;
-    /* background-color: #ecf1f2; */
     padding: 15px;
     margin-left: 41px;
     margin-top: -82px;
-
-       
     background-image: url('https://cpwebassets.codepen.io/assets/packs/lines-3-4541e35a1939230404d773f7eeddcc9b.svg');
     background-size: 1100px;
     background-position: 30 30;
@@ -100,21 +93,9 @@ h1{
 
 
 #friends-list-container{
-    /* border: 3px solid black; */
     width: 63%;
     padding-left: 21px;
 }
-
-
-/* 
-    display: flex;
-    background-color: cyan;
-    justify-content: flex-start;
-    margin-top: 0;
-    padding-top: 60px;
-    padding-bottom: 43px;
-} */
-
 
 
 #codeial {
@@ -124,7 +105,7 @@ h1{
 
 
 #Profile-shortcuts {
-    /* border: 31px solid red; */
+
     width: 80%;
     margin: auto;
     margin-top: 70px;

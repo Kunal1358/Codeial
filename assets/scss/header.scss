@@ -1,0 +1,87 @@
+#layout-header {
+	nav {
+		font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 5;
+		display: flex;
+		justify-content: space-between;
+		padding: 0 10px;
+		background: #252830;
+		box-shadow: 1px 1px 1px 1px lightgrey;
+		height: 55px;
+		border-bottom: 2px solid grey;
+		.auth-links {
+			ul {
+				display: flex;
+				list-style: none;
+				margin-top: 17px;
+				li {
+					margin-right: 25px;
+					width: max-content;
+					font-size: 20px;
+				}
+			}
+		}
+		.mini-logo {
+			p {
+				font-size: 35px;
+				font-weight: bold;
+				margin-top: 17px;
+				padding-left: 5px;
+				color: turquoise;
+			}
+		}
+	}
+}
+.link {
+	color: white;
+	text-decoration: none;
+	&:hover {
+		color: 1ee2e7;
+		color: #17d0d5;
+		text-decoration: underline;
+		text-decoration-color: white;
+		text-underline-offset: 4px;
+	}
+	&:focus {
+		color: #17d0d5;
+		text-decoration: underline;
+		text-decoration-color: white;
+		text-underline-offset: 4px;
+	}
+	&:active {
+		color: #17d0d5;
+		text-decoration: underline;
+		text-decoration-color: white;
+		text-underline-offset: 4px;
+	}
+}
+.link.active {
+	color: #17d0d5;
+	text-decoration: underline;
+	text-decoration-color: white;
+	text-underline-offset: 4px;
+}
+#codeial {
+	color: #9870e8;
+	text-decoration: none;
+	font-size: 33px;
+	text-transform: capitalize;
+	&:hover {
+		color: turquoise;
+		text-decoration: underline;
+		text-decoration-color: white;
+		text-underline-offset: 4px;
+		text-transform: capitalize;
+	}
+}
+.un {
+	transition: 300ms;
+	border-bottom: 1px solid transparent;
+	&:hover {
+		border-color: black;
+	}
+}
