@@ -1,10 +1,12 @@
-    <!--<title> Responsive Sidebar Menu  | CodingLab </title>-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!-- For development -->
     <link rel="stylesheet" href="/css/users.css">
+
 
   <div class="sidebar">
     <div class="logo-details">
@@ -12,12 +14,9 @@
         <div class="logo_name">Codeial</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
+
     <ul class="nav-list">
-      <li>
-          <i id="last"class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
-         <span class="tooltip">Search</span>
-      </li>
+      
       <li>
         <a href='/'>
           <i class='bx bx-grid-alt' id="d"></i>
@@ -25,35 +24,50 @@
         </a>
          <span class="tooltip">Dashboard</span>
       </li>
+
+
       <li>
-       <a href="#">
+       <a href="/users/profile/<%= user.id%>">
          <i class='bx bx-user' id="d" ></i>
          <span class="links_name">User Profile</span>
        </a>
-       <span class="tooltip">User</span>
+       <span class="tooltip">Profile</span>
      </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-chat' id="d" ></i>
-         <span class="links_name">Messages</span>
+
+      <li>
+       <a href="/users/allUsers/<%= user.id%>">
+         <!-- <i class='bx bx-user' id="d" ></i> -->
+         <i class="fas fa-users" id="d"></i>
+         <span class="links_name">All Users</span>
        </a>
-       <span class="tooltip">Messages</span>
+       <span class="tooltip">All Users</span>
+     </li>
+
+     
+     <li>
+       <a href="/users/profile/<%= user.id%>">
+         <!-- <i class='bx bx-chat' id="d" ></i> -->
+         <i class="fas fa-user-friends" id="d" ></i>
+         <span class="links_name">Friends</span>
+       </a>
+       <span class="tooltip">Friends</span>
      </li>
      
      <li>
-       <a href="#">
-         <i class='bx bx-heart' id="d" ></i>
-         <span class="links_name">Saved</span>
+       <a href="/users/notifications/<%= user.id%>">
+         <!-- <i class='bx bx-heart' id="d" ></i> -->
+         <i class="far fa-bell" id="d" ></i>
+         <span class="links_name">Notification</span>
        </a>
-       <span class="tooltip">Saved</span>
+       <span class="tooltip">Notification</span>
      </li>
 
      <li>
-       <a href="#">
-         <i class='bx bx-cog' id="d" ></i>
-         <span class="links_name">Setting</span>
+       <a href="https://github.com/Kunal1358/Codeial">
+        <i class="fa fa-github" style="font-size:27px" id="d" ></i>
+         <span class="links_name">Github</span>
        </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Github</span>
      </li>
 
      <li class="profile">
@@ -81,7 +95,7 @@
   <section class="home-section"> 
       <div class="text"> 
 
-        <p> to to</p>
+        <p> Slide Me</p>
 
        </div>
 

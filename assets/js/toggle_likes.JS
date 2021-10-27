@@ -1,5 +1,3 @@
-// CHANGE :: create a class to toggle likes when a link is clicked, using AJAX
-
 
 class ToggleLike{
     constructor(toggleElement){
@@ -13,9 +11,8 @@ class ToggleLike{
             e.preventDefault();
             let self = this;
             
-            // let notificationContainer =$('#noti-content');
+            let notificationContainer =$('#noti-content');
 
-            // this is a new way of writing ajax which you might've studied, it looks like the same as promises
             $.ajax({
                 type: 'POST',
                 url: $(self).attr('href'),
@@ -30,6 +27,7 @@ class ToggleLike{
                     likesCount -= 1;
                     
                 }else{
+                    
 // *******************************************************************************************
 
                     // TODO add notification by ajax
@@ -63,7 +61,7 @@ class ToggleLike{
 
 
                 $(self).attr('data-likes', likesCount);
-                $(self).html(`${likesCount} Likes`);
+                $(self).html(` <i class="fas fa-heart fa-2x" style="font-size:23px; color:#7c80ed; padding-right: 3px;" ></i>  ${likesCount}  `);
 
             })
             .fail(function(errData) {

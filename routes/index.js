@@ -17,18 +17,11 @@ router.use('/likes',require('./like'));
 
 router.use('/api',require('./api'));
 
-router.use('/codeial',require('./contactForm'));
-
 router.use('/friendships',require('./friendship'));
 
 
 //for any further routes access from here
 // app.use('/routeName',require('./route'));
-
-
-
-
-
 
 
 module.exports=router;

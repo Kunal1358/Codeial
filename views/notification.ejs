@@ -1,8 +1,41 @@
+<style>
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 20px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey; 
+      border-radius: 10px;
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #9766da; 
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #20b4fc; 
+    }
+</style>
 
 <link rel="stylesheet" href="/css/notifications.css">
 
 
-<h1>
+
+<h1 class="hide" >
+    Notification Pannel
+</h1>
+<h1 class="hide">
     Notification Pannel
 </h1>
 
@@ -22,8 +55,8 @@
 
     <br> <br> <br>
     
-<div id="noti-content">
-       <h1>  <%=notificationUser.name %>'s notifications </h1>
+<div id="noti-content"   >
+       <h1 id="Noti-Heading" >  <%=notificationUser.name %>'s  &nbsp; Notifications </h1>
         <ul>
             <% for(noti of notifications){ %>
 
@@ -32,17 +65,17 @@
                     <li id="not-read" > <%= noti.content %>
 
                         <div id="date-time-container" >
-                            <p> <%= ((noti.createdAt.getHours() + 24) % 12 || 12 )
+                            <p id="time" > <%= ((noti.createdAt.getHours() + 24) % 12 || 12 )
                                  +":"+ noti.createdAt.getMinutes()
                                  +" "+((noti.createdAt.getHours()) >= 12 ? 'pm' : 'am')                        
                                 %> </p>
-                            <p><%= noti.createdAt.getDate()
-                                +"-"+ noti.createdAt.getMonth() 
+                            <p id="date" ><%= noti.createdAt.getDate()
+                                +"-"+ (noti.createdAt.getMonth()+1)
                                 +"-"+ noti.createdAt.getFullYear()
                                 %>
                             </p>    
                         </div>
-                        <p><%= noti.isRead%></p>
+                        <!-- <p><%= noti.isRead%></p> -->
                         
                     </li>
                     
@@ -51,17 +84,17 @@
                     <li id="read" > <%= noti.content %>
 
                         <div id="date-time-container" >
-                            <p> <%= ((noti.createdAt.getHours() + 24) % 12 || 12 )
+                            <p id='time' > <%= ((noti.createdAt.getHours() + 24) % 12 || 12 )
                                  +":"+ noti.createdAt.getMinutes()
                                  +" "+((noti.createdAt.getHours()) >= 12 ? 'pm' : 'am')                        
                                 %> </p>
-                            <p><%= noti.createdAt.getDate()
-                                +"-"+ noti.createdAt.getMonth() 
+                            <p id="date" ><%= noti.createdAt.getDate()
+                                +"-"+ (noti.createdAt.getMonth()+1)
                                 +"-"+ noti.createdAt.getFullYear()
                                 %>
                             </p>    
                         </div>
-                        <p><%= noti.isRead%></p>
+                        <!-- <p><%= noti.isRead%></p> -->
     
                     </li>
 
@@ -76,23 +109,25 @@
         
         
     </div>
+
+    <div id="test" >
+        <p>sad</p>
+
+    </div>
+
+
 </div>
 
 
 
 
 
-
+<!-- For development -->
 <script src = "/js/notifications.js"></script>
-
-
 
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
-// window.alert("Workisdfsdfsfng");
 $(window).load(function(){
-    // window.alert("Worki-----------ng");
-    // console.log('Wrking================================================');
     myClick();
 });
 
@@ -103,5 +138,5 @@ function myClick() {
         document.getElementById('updateNoti').click();
     }, 5000);
 }
-
 </script> 
+

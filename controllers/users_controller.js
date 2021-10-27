@@ -7,39 +7,11 @@ const Friendship = require('../models/friendship');
 const Notification = require('../models/notification');
 const mongoose= require('mongoose');
 
-
 const PasswordResetToken = require('../models/PasswordResetToken');
 const crypto = require('crypto');
 const passwordResetMailer = require('../mailers/password_reset_mailer');
 
 
-// module.exports.profile = async function(req,res){
-
-//     let user = await User.findById(req.params.id,);
-
-//     // finding post
-//     let posts = await Post.find({'user':(req.params.id)})
-//     .sort('-createdAt')
-//     .populate('user')
-//     .populate({
-//         path: 'comments',
-//         populate: {
-//             path: 'user'
-//         },
-//         populate: { // populated likes
-//             path: 'likes'
-//         }
-//     }).populate('likes');
-
-
-//     return res.render('user_profile',{
-//         title: "User Profile",
-//         profile_user: user,
-//         posts: posts
-//     });
-
-    
-// };
 
 // Profile
 module.exports.profile = async function(req,res){
@@ -206,7 +178,6 @@ module.exports.getAllUsers = async function(req,res){
 
 
 
-
 // Notifications
 module.exports.notifications = async function(req,res){
 
@@ -277,6 +248,7 @@ module.exports.updateNoti = async function(req,res){
 }
 
 
+
 module.exports.as = async function(req,res){
 
   
@@ -328,7 +300,6 @@ module.exports.as = async function(req,res){
 
 
 // Forgot Password
-
 //create controller to render forget-password page
 module.exports.forgotPassword = function (req, res) {
     if (req.isAuthenticated()) {
@@ -442,3 +413,8 @@ module.exports.updatePassword = async function (req, res) {
     }
   };
   
+
+// Github
+  module.exports.GitHub = function(req, res){
+    return res.redirect('https://github.com/Kunal1358/Codeial')
+  }

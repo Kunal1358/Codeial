@@ -1,5 +1,7 @@
 
+<!-- For development -->
 <link rel="stylesheet" href="/css/profile_shortcuts.css">
+
 
 
 
@@ -9,15 +11,16 @@
 
     <div id="shortcuts-links" >
 
-        <div id="feed-post" >
-            <a href="/"> Home </a>
+        <div id="feed-post" > 
+            <a href="/"> <i class="fas fa-house-user"></i> &nbsp;  &nbsp; Home </a>
         </div>
         <div>
-            <a href="/users/allUsers/<%= profile_user.id%>"> People </a>
+            <a href="/users/allUsers/<%= profile_user.id%>"> <i class="fas fa-users"></i> &nbsp;  &nbsp; People </a>
         </div>
 
         <div id="Notification">
-            <a href="/users/notifications/<%= user.id%>"> Notification </a>
+            <a href="/users/notifications/<%= user.id%>"> <i class="far fa-bell"></i> &nbsp;  &nbsp;  Notification </a>
+            
         </div id="People">
         
     </div>
@@ -25,8 +28,7 @@
 </div>
 
 
-
-<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
+<!--  For development -->
 <script src="/js/toggle_likes.js"></script>
 <script>
     $('.toggle-like-button').each(function(){
@@ -34,3 +36,6 @@
         let toggleLike = new ToggleLike(self);
     });
 </script>
+
+
+

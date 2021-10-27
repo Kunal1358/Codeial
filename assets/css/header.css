@@ -9,10 +9,16 @@
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
-  background: #222;
+  background: #252830;
   box-shadow: 1px 1px 1px 1px lightgrey;
   height: 55px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid grey;
+  /* border: 3px solid red; */
+
+    
+
+
+
 }
 
 .link {
@@ -35,14 +41,15 @@
 }
 
 #codeial {
-  color: #17d0d5;
+  color: #9870e8;
   /* background-color: chartreuse; */
   text-decoration: none;
+  font-size: 33px;
   text-transform: capitalize;
 }
 
 #codeial:hover {
-  color: #fec503;
+  color: turquoise;
   text-decoration: underline;
   text-decoration-color: white;
   text-underline-offset: 4px;
@@ -57,8 +64,9 @@
 
 #layout-header nav .auth-links ul li {
   margin-right: 25px;
-  width: 80px;
+  width: max-content;
   font-size: 20px;
+
 }
 
 #layout-header nav .mini-logo p {

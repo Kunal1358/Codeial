@@ -1,7 +1,7 @@
-
+/*  Outside friend */
 #friends-list-container{
-    border-right: 2px solid rebeccapurple;
-    border-bottom: 2px solid rebeccapurple;
+    border-right: 2px solid rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(255, 255, 255);
     height: 40px;
     font-size: 20px;
     display: flex;
@@ -9,7 +9,20 @@
     padding-left: 10px;
     box-shadow: 5px 6px #d4d1d1;
     margin-bottom: 25px;
+
+    background: #252830;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+
 }
+
+#friends-list-container:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+}
+
 
 #icon{
     padding-right: 11px;
@@ -17,5 +30,8 @@
 
 #friends-list-container a{
    text-decoration: none;
-   color: rgb(16, 228, 243);
+   color: rgb(255, 255, 255);
 }
+
+
+

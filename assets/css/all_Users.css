@@ -1,31 +1,58 @@
 body{
-   
+   /* background-color: #252830; */
+   /* background-color: rgb(207, 43, 43); */
+   /* background-color:chartreuse; */
+   background:black;
+   color: #fff;
 }
 
 h1{
-    margin-top: 87px;
+    margin-top: 80px;
     text-align: center;
+
+    text-underline-offset: 4px; 
+    font-family: Tahoma, sans-serif;
+    text-decoration: underline;
+    color:white;
 }
 
 #content-container{
     display: flex;
-    background-color: rgb(255, 238, 206);
+    background-color: rgb(37 40 48);
     padding-top: 60px;
     padding-bottom: 43px;
-    margin-top: 32;
-    
+    margin-top: -35;
+    background-color: black;
+
+    background-image: url('https://cpwebassets.codepen.io/assets/packs/lines-2-4e66616a5ef291c3566a7ddfe1ffaaa8.svg');
+    background-size: 1010px;
+    background-position: 630 30;
+    background-repeat: no-repeat;
 }
 #center-content{
     width: 60%;
-    background-color: #fff1f1;
+    /* background-color: #fff1f1; */
     padding: 15px;
+    background: linear-gradient(109.61deg,#4c4f5a 4.26%,#202125 84.84%);
+    color: white;
+    border: 2px solid;
+    border-color: black;
+    border-radius: 6px;
 }
 
 #left-content{
     width: 30%;
-    background-color: #ecf1f2;
+    /* background-color: #ecf1f2; */
     padding: 15px;
     margin-left: 41px;
+    margin-top: -82px;
+
+       
+    background-image: url('https://cpwebassets.codepen.io/assets/packs/lines-3-4541e35a1939230404d773f7eeddcc9b.svg');
+    background-size: 1100px;
+    background-position: 30 30;
+    background-repeat: no-repeat;
+
 }
 
 .friend-buttons{
@@ -44,9 +71,33 @@ h1{
     justify-content: space-between;
     align-items: center;
     width: 80%;
-    margin-left: 20px;
+    margin-left: 80;
     margin-top: 25px;
+    background: #252830;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
 }
+
+#friends-list-container-main:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 50px 50px rgba(0,0,0,0.22);
+}
+
+#friends-list-container-main a{
+    
+    color: white;
+    font-family: unset;
+    text-decoration: none;
+
+}
+  
+  #friends-list-container-main a:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 50px 50px rgba(0,0,0,0.22);
+  }
+
+
+
 
 #friends-list-container{
     /* border: 3px solid black; */
@@ -63,3 +114,22 @@ h1{
     padding-top: 60px;
     padding-bottom: 43px;
 } */
+
+
+
+#codeial {
+    display: flex;
+    margin-top: -9px;
+}
+
+
+#Profile-shortcuts {
+    /* border: 31px solid red; */
+    width: 80%;
+    margin: auto;
+    margin-top: 70px;
+    background: #252830;
+    color: white;
+    box-shadow: 0 4px 30px rgb(0 0 0 / 50%);
+    border-radius: 6px;
+}

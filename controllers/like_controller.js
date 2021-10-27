@@ -10,6 +10,8 @@ const likeEmailWorker = require('../worker/like_email_worker');
 const Notification = require('../models/notification');
 const mongoose= require('mongoose');
 
+
+
 module.exports.toggleLike = async function(req, res){
     try{
 
@@ -57,8 +59,6 @@ module.exports.toggleLike = async function(req, res){
 
             const ObjectId = mongoose.Types.ObjectId;
             let notificationUser = await User.findOne({_id: ObjectId(req.user.id)});
-            console.log("notificationUser\n", notificationUser.id);
-
             
             const TypeofContent = req.query.type;
             const userName = req.user.name;
@@ -75,9 +75,6 @@ module.exports.toggleLike = async function(req, res){
             let s =""+(post_comment_User.user);
                 var fetchedUser_pc = s.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "");
 
-            // console.log("fetchedUser_pc",fetchedUser_pc);
-
-            // console.log("Printing\n",post_comment_User.user);
 
             const notificationUser_pc = ""+notificationUser.id;
 
@@ -100,11 +97,6 @@ module.exports.toggleLike = async function(req, res){
                   contentId: req.query.id
                 });        
 
-                // console.log(newNotification);
-
-                // Adding Notification to Users 
-
-                // let usersPost = await Post.findOne({_id: ObjectId(req.query.id)});
                 let usersPost;
 
 
@@ -117,22 +109,16 @@ module.exports.toggleLike = async function(req, res){
                 let s =""+(usersPost.user);
                 var fetchedUser = s.match(/(?:"[^"]*"|^[^"]*$)/)[0].replace(/"/g, "");
 
-                console.log("Fetched",fetchedUser);
-
                 let fetchedUserModel = await User.findOne({_id: ObjectId(fetchedUser)});
 
                 fetchedUserModel.notifications.push(newNotification);
                 fetchedUserModel.save();
-
-            
-                // req.flash('success', 'Notification Added!');           
                 
               }catch(err){
                 req.flash('error', "Internal Server Error");
                 console.log(err);
             }
 
-            console.log("finish")
 
 // **********************************************************************************************************************            
 

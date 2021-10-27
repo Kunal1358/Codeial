@@ -1,22 +1,29 @@
-
+<script src="https://kit.fontawesome.com/3e77aa9250.js" crossorigin="anonymous"></script>
 
 
 <li  class="comemnt-content" id="comment-<%= comment._id %>">
     <p>
 
-        <% if(locals.user && locals.user.id == comment.user.id) { %>
+        <% if(locals.user && locals.user.id == comment.user) { %>
 
 
             <small>
-                <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">X</a>
+                <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">
+                    <i class="far fa-trash-alt" style="font-size:17px; color:grey; padding-right: 8px;"></i>
+                </a>
             </small>
 
 
         <% } %>
 
         <span id="comment-content">
+
+
          <!-- Comment Content -->
         <%= comment.content %>
+
+        
+
         </span>
 
 
@@ -24,24 +31,34 @@
         <br>
 
         <span id="comment-details">
-            <i> Commented By: </i>  &nbsp; User to be found!
-
+            <i> Commented By: </i>
             <small>
-                <%= comment.user.name %>
+
+                <%for( cu of all_users){ %>
+
+                    <% if( cu.id == comment.user) { %>
+                        <%= cu.name %>
+                        <% break %>
+
+                        <%}%>
+
+
+                <% } %>
+                
+
+
             </small>
             <br>
         </span>
 
         <span id="comment-like-container" >
-            <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
-            <!-- study about the data attribute -->
             <small>
                 <% if (locals.user){ %>
                     <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
-                        <%= comment.likes.length %> Likes
+                        <i class="fas fa-heart fa-2x" style="font-size:18px; color:#7c80ed; padding-right: 3px;" ></i>    <%= post.likes.length %> 
                     </a>
                 <% }else{ %>
-                    <%= comment.likes.length %> Likes
+                    <i class="fas fa-heart fa-2x" style="font-size:18px; color:#7c80ed; padding-right: 3px;" ></i> <%= post.likes.length %>
                 <% } %>
                 </small>
     

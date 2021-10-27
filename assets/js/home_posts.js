@@ -12,13 +12,15 @@
                 data: newPostForm.serialize(),
                 success: function(data){
                     let newPost = newPostDom(data.data.post);
-                    $('#posts-list-container>ul').prepend(newPost);
+                    console.log("Post")
+                    console.log($('#posts-list-container>ul'));
+                    $('#posts-list-container>ul').prepend(newPost).addClass('post-content');
                     deletePost($(' .delete-post-button', newPost));
+
 
                     // call the create comment class
                     new PostComments(data.data.post._id);
 
-                    // CHANGE :: enable the functionality of the toggle like button on the new post
                     new ToggleLike($(' .toggle-like-button', newPost));
 
                     new Noty({
@@ -41,34 +43,50 @@
     // method to create a post in DOM
     let newPostDom = function(post){
         // CHANGE :: show the count of zero likes on this post
-        return $(`<li id="post-${post._id}">
+        return $(`<li class="post-content-container" id="post-${post._id}">
                     <p>
                         
                         <small>
-                            <a class="delete-post-button"  href="/posts/destroy/${ post._id }">X</a>
+                            <a class="delete-post-button"  href="/posts/destroy/${ post._id }">
+                            <i class="far fa-trash-alt" style="font-size:23px; color:grey; padding-right: 8px;"></i>
+                            </a>
                         </small>
                        
-                        ${ post.content }
+                        <span id="post-content" >
+                            ${ post.content }
+                        </span>
                         <br>
-                        <small>
-                        ${ post.user.name }
-                        </small>
+
+                        <span id="post-details">
+                            <small> <i> Posted By: </i>
+
+                            </small>
+                        </span>
+
                         <br>
-                        <small>
-                            
-                                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
-                                    0 Likes
-                                </a>
-                            
-                        </small>
+
+
+
+                        <span id="post-like-container" >
+                            <small>
+                                
+                                    <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                                    <i class="fas fa-heart fa-2x" style="font-size:23px; color:#7c80ed; padding-right: 3px;" ></i>   0 
+                                    </a>
+                                
+                            </small>
+                        </span>
 
                     </p>
+
+
                     <div class="post-comments">
                         
-                            <form id="post-${ post._id }-comments-form" action="/comments/create" method="POST">
+                            <form comment-form id="post-${ post._id }-comments-form" action="/comments/create" method="POST">
                                 <input type="text" name="content" placeholder="Type Here to add comment..." required>
                                 <input type="hidden" name="post" value="${ post._id }" >
-                                <input type="submit" value="Add Comment">
+                                <button type="submit" form="post-${ post._id}-comments-form" class="button" style="vertical-align:middle" value="Submit"><span>Comment</span></button>
+               
                             </form>
                
                 

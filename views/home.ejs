@@ -1,16 +1,11 @@
+<!-- For development -->
 <link rel="stylesheet" href="/css/dash.css">
 <link rel="stylesheet" href="/css/chat.css">
-<link rel="stylesheet" href="/css/chat_box.css">
 <link rel="stylesheet" href="/css/post.css">
 <link rel="stylesheet" href="/css/comment.css">
 <link rel="stylesheet" href="/css/home.css">
 
 
-
-
-<!-- for production  -->
-<!-- <link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
-<link rel="stylesheet" href="<%= assetPath('css/chat_box.css') %>"> -->
 
 <div id="home-container">
 
@@ -27,7 +22,7 @@
 
     <section id="feed-posts">
 
-        <h4 id="feed" class="un" >Feed Posts</h4>
+        <h4 id="feed" class="un card-1" >Feed Posts</h4>
 
         <% if(locals.user){ %>
 
@@ -42,7 +37,7 @@
 
         <% } %>
     
-        <div id="posts-list-container">
+        <div id="posts-list-container" class="card1" >
             <ul>
                 <% for(post of posts){ %>
                     
@@ -56,20 +51,26 @@
     
     
     <section id="user-friends">
-    
-        <h3 id="user-friends-list" class="un" >Friends</h3>
+
+        <% if (locals.user){ %>
+
+            <h3 id="user-friends-list" class="un card-1" >Users</h3>
     
 
-        <div id="list-friends" >
+            <div id="list-friends" >
+    
+                
+            <% for(u of all_users) { %>
+        
+                <%- include('_friends') -%>
+        
+            <% } %>
+    
+            </div>
 
-            
-        <% for(u of all_users) { %>
-    
-            <%- include('_friends') -%>
-    
         <% } %>
+    
 
-        </div>
      
     </section>
 
@@ -78,12 +79,14 @@
 
 </div>
 
+
+
+<!-- For development -->
+
 <script src="/js/home_post_comments.js" ></script>
 
 <script src="/js/home_posts.js"></script>
 
-
-<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
 <script src="js/toggle_likes.js"></script>
 <script>
     $('.toggle-like-button').each(function(){
@@ -93,16 +96,15 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.0/socket.io.js"></script>
-
 <script src="/js/chat_engine.js"></script>
 
  <% if (locals.user){ %>
     <script>
-        new ChatEngine('user-chat-box', '<%= locals.user.email %>')
+        new ChatEngine('user-chat-box', '<%= locals.user.email %>' , '<%= locals.user.name %>' )
     </script>
 <% } %> 
 
-
+<script src="/js/toggle_friendships.js"></script>
 
 
 

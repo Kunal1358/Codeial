@@ -14,14 +14,14 @@
         <div class="friend-buttons" >
 
             <!-- Add Button -->
-            <a href="/friendships/create/<%= u.id %>"> 
+            <a id="add_friend" href="/friendships/create/<%= u.id %>"> 
         
-                <i class="fa fa-plus fa-1x" aria-hidden="true"></i>
+                <i class="fas fa-user-plus" style="font-size:18px" ></i>
 
             <!-- Delete Button -->
             <a href="/friendships/delete/<%= u.id %>"> 
             
-                <i class="fa fa-trash fa-1x" aria-hidden="true"></i>
+                <i class="fas fa-user-times" style="font-size:18px " ></i>
     
             </a>
 
@@ -32,3 +32,5 @@
     <!-- <%= u.id %> -->
 
 </div>
+
+

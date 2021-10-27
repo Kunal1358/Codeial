@@ -1,9 +1,3 @@
-// Let's implement this via classes
-
-// this class would be initialized for every post on the page
-// 1. When the page loads
-// 2. Creation of every post dynamically via AJAX
-
 
 class PostComments{
     // constructor is used to initialize the instance of the class whenever a new instance is created
@@ -37,7 +31,6 @@ class PostComments{
                     $(`#post-comments-${postId}`).prepend(newComment);
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
 
-                    // CHANGE :: enable the functionality of the toggle like button on the new comment
                     new ToggleLike($(' .toggle-like-button', newComment));
                     new Noty({
                         theme: 'relax',
@@ -59,27 +52,42 @@ class PostComments{
 
 
     newCommentDom(comment){
-        // CHANGE :: show the count of zero likes on this comment
 
-        return $(`<li id="comment-${ comment._id }">
+        return $(`<li class="comemnt-content" id="comment-${ comment._id }">
                         <p>
                             
                             <small>
-                                <a class="delete-comment-button" href="/comments/destroy/${comment._id}">X</a>
-                            </small>
-                            
-                            ${comment.content}
-                            <br>
-                            <small>
-                                ${comment.user.name}
-                            </small>
-                            <small>
-                            
-                                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
-                                    0 Likes
+                                <a class="delete-comment-button" href="/comments/destroy/${comment._id}">
+                                <i class="far fa-trash-alt" style="font-size:17px; color:grey; padding-right: 8px;"></i>
                                 </a>
-                            
                             </small>
+
+                            <span id="comment-content">
+                                ${comment.content}
+                            </span>
+
+                            <br>
+
+                            <span id="comment-details">
+                                <i> Commented By: </i>
+                                <small>
+                                    ${comment.user.name}
+                                </small>
+                                <br>
+                            </span>
+
+
+                            <span id="comment-like-container" >
+
+                                <small>
+                                
+                                    <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                        <i class="fas fa-heart fa-2x" style="font-size:18px; color:#7c80ed; padding-right: 3px;" ></i> 0 
+                                    </a>
+                                
+                                </small>
+
+                            </span>
 
                         </p>    
 

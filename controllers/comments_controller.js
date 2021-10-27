@@ -1,14 +1,13 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const User = require('../models/users');
+const Like = require('../models/like');
+const Notification = require('../models/notification');
+
 const commentMailer = require('../mailers/comments_mailer');
 const commentEmailWorker = require('../worker/comment_email_worker');
+
 const queue = require('../config/kue');
-const Like = require('../models/like');
-
-const User = require('../models/users');
-
-
-const Notification = require('../models/notification');
 const mongoose= require('mongoose');
 
 
@@ -27,15 +26,12 @@ module.exports.create = async function(req, res){
             post.comments.push(comment);
             post.save();
 
-            // TO solve error
-            //comment = await comment.populate('user', 'name email').execPopulate();
+            // populate User
+            comment = await comment.populate('user', 'name email');
 
-            // console.log(comment);
-            //  commentMailer.newComment(comment);
 
             // Web Notifications
 // **********************************************************************************************************************            
-
 
             let commentedPost = await Post.findById(req.body.post);
             let commentedPostUser = commentedPost.user;
@@ -65,13 +61,12 @@ module.exports.create = async function(req, res){
                 contentId: req.body.post
               });        
 
-              
               fetchedUserModel.notifications.push(newNotification);
-              
               fetchedUserModel.save();
 
 
 // **********************************************************************************************************************            
+
 
             // Email Job
             let job = queue.create('newComment', comment).save(function(err){
@@ -115,7 +110,7 @@ module.exports.destroy = async function(req,res){
             comment.remove();
             let post = await Post.findByIdAndUpdate(postId , { $pull : {comments : req.params.id }});
 
-             // CHANGE :: destroy the associated likes for this comment
+             // destroy the associated likes for this comment
              await Like.deleteMany({likeable: comment._id, onModel: 'Comment'});
 
              let job = queue.create('deleteComment', comment).save(function(err){

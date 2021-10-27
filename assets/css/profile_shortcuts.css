@@ -1,27 +1,44 @@
 
 #Profile-shortcuts{
-    border: 5px solid rgb(188, 192, 188);
+
+    /* border: 31px solid red; */
+
     width: 80%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 70px;
+
+    background: #252830;
+    color: white;
+
+    box-shadow: 0 4px 30px rgb(0 0 0 / 50%);
+    border-radius: 6px;;
+
+
+
 }
 
 #head{
     /* border: 5px solid rgb(1, 81, 230); */
     height: 70px;
+    font-family: Tahoma, sans-serif;
     display: flex;
     align-items: center;
     align-content: center;
     margin-left: auto;
-    padding-left: 5px;
-    border-bottom: 5px solid rgb(158, 145, 145) !important;
+    padding-left: 18px;
+    text-decoration: underline;
+    text-decoration-color: #b9c3c9;
+    text-underline-offset: 8px;
 }
 
 #shortcuts-links{
     /* border: 5px solid red; */
-    background-color: rgb(188, 192, 188);
+    /* background-color: rgb(188, 192, 188); */
 }
 #Profile-shortcuts a{
+
+    color: white;
+
        text-decoration: none;
        display: flex;
        align-content: center;
@@ -32,6 +49,16 @@
        padding-left: 10px;
        width: fit-content;
        padding-right: 10px;
-       border-bottom: 2px solid red;
+       /* border-bottom: 2px solid red; */
+
+       
+
+
+}
+
+#Profile-shortcuts a:hover{
+
+    text-decoration: underline;
+    text-underline-offset: 8px;
 
 }

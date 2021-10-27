@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const friendshipSchema = new mongoose.Schema({
 
     // the user who sent this request

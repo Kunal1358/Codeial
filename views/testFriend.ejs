@@ -1,3 +1,7 @@
+<!-- for development -->
+<link rel="stylesheet" href="/css/profileFriend.css">
+
+
 
 <style>
     #fl {
@@ -6,16 +10,12 @@
     display: flex;
     justify-content: space-between;
     }
-
-    .delete{
-        border:1px solid rgb(23, 245, 34);
-    }
-
 </style>
 
-<h1> Friend List -> <%= profile_user.name %> </h1>
 
-<ul>
+<h1 id="friend-list-heading" ><%= profile_user.name %>'s &nbsp;   Friend's List </h1>
+
+<ul id="friend-ul" >
     <% for(f of friend){ %>
         <% for(uf of user.friendships){ %>
             <% if(f.id == uf){ %>
@@ -28,17 +28,17 @@
 
                         <% if( f.from_user == uf.id  ){ %>
     
-                        <li id="fl" >
+                        <li  id="friend-li" >
                              <!-- <%= uf.name %>  -->
 
-                            <a href="/users/profile/<%= uf.id %>"> <%= uf.name %> </a>
+                            <a id="friend-name"  href="/users/profile/<%= uf.id %>"> <%= uf.name %> </a>
 
 
                         <!-- TO change Route -->
 
                                 <a class="delete" href="/friendships/delete/req/<%= uf.id %>"> 
 
-                                <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                                    <i class="fas fa-user-times fa-2x "></i>
                     
                             </a>
 
@@ -55,14 +55,14 @@
 
                     <% if( (f.to_user == uf.id) && (profile_user.id != f.to_user)  ){ %>
 
-                    <li id="fl" >
+                    <li  id="friend-li" class=float-shadow >
                          <!-- <%= uf.name %>    -->
                     
-                         <a href="/users/profile/<%= uf.id %>"> <%= uf.name %> </a>
+                         <a id="friend-name"  href="/users/profile/<%= uf.id %>"> <%= uf.name %> </a>
                          
                         <a class="delete" href="/friendships/delete/<%= uf.id %>"> 
         
-                            <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+                            <i class="fas fa-user-times fa-2x "></i>
                 
                         </a>
 

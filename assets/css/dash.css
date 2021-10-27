@@ -10,8 +10,8 @@
   position: absolute;
   /* border-top: 10px solid rgb(247, 0, 255); */
   left: 0;
-  top: 45;
-  height: 98%;
+  top: 55px;
+  height: 95%;
   width: 78px;
   background: #11101D;
   padding: 6px 14px;
@@ -221,7 +221,7 @@
   /* left: -15px; */
   /*  Change due to chat Box */
   left: -41px;
-  bottom: -8px;
+  bottom: 3px;
   padding: 10px 14px;
   background: #1d1b31;
   transition: all 0.5s ease;
@@ -284,7 +284,7 @@
 
 .home-section {
   position: relative;
-  background: #E4E9F7;
+  background: #d3d3d3;
   max-height: 100vh;
   top: 38px;
   left: 78px;

@@ -5,10 +5,17 @@
   display: inline-block;
   margin-top: 8px;
   padding: 7px;
+
+
+
+}
+
+.vfx{
+  border: 12px solid red;
 }
 
 .post-content-container {
-  border: 2px solid gold;
+  border: 12px solid gold;
   margin-right: 10px;
   line-height: 20px;
   padding: 7px;
@@ -17,6 +24,16 @@
   margin-bottom: 30px;
   border-left: none !important;
   background: #c0f0f1;
+  
+
+  align-items: center;
+  /* #252830; */
+  /* background: rgba(255, 255, 255, 0.375); */
+
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+
+  box-shadow: 0 0.75rem 2rem 0 rgb(0 0 0 / 10%);
 }
 
 #post-content {
@@ -24,6 +41,8 @@
   display: inline-block;
   margin-top: 8px;
   padding: 7px;
+
+
 }
 
 .post-form {
@@ -54,7 +73,7 @@
 
 #post-like-container {
   /* 
-      border:2px solid red; */
+    border:2px solid red; */
   display: block;
   margin-top: -15px;
   margin-left: 10px;
@@ -107,4 +126,16 @@ input {
   height: 40px;
   border: none !important;
   padding-left: 10px;
+  margin-left: 10px;
 }
+
+
+.toggle-like-button{
+  /* border: 2px solid red; */
+  font-size: 25px;
+  padding-left: 3px;
+  text-decoration: none;
+  color: #7c80ed;
+}
+
+

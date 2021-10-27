@@ -16,16 +16,44 @@
 #user-links {
   margin-top: 15px;
   width: 24%;
-  background-color: rgba(225, 253, 189, 0.685);
+  background-color: #f4f2f2;
   display: block;
   border-right: 1px solid black;
 }
 
 #profile-form {
   border-top: 5px solid blueviolet;
+  background-color: #f4f2f2;
+
+  /* border-bottom: 5px solid blueviolet; */
 }
 
+#myProfile{
+  font-family: Tahoma, sans-serif;
+  margin-top: 18px;
+  margin-bottom: 30px;
+  font-size: 35px;
+}
+
+#myProfile:hover{
+
+  text-decoration: underline;
+  text-decoration-color: #c0f0f1;
+  text-underline-offset: 6px;
+}
+
+#friendProfile{
+
+  font-family: Tahoma, sans-serif;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  font-size: 35px;
+}
+
+
+
 #right-container {
+  background-color: #f4f2f2;
   border-left: 1px solid black;
   margin-top: 55px;
   width: 26%;
@@ -33,7 +61,7 @@
 }
 
 #codeial {
-  color: #17d0d5;
+  color: #9870e8;
   /* border: 10px solid red; */
   /* background-color: chartreuse; */
   text-decoration: none;
@@ -78,3 +106,14 @@
   transition: all 0.4s ease;
   background: #11101D;
 }
+
+
+img{
+  border: none;
+  border-radius: 8rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+img:hover{
+    border-radius: 3rem;
+} 

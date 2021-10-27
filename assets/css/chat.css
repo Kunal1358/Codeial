@@ -230,10 +230,11 @@ ul li{
   padding: 20px;
   color: #888;
   text-align: initial;
+  background: gainsboro;
 }
 
 #ban{
-  border-top: 2px solid #e5ff0a;
+  border-top: 2px solid #42a5f5;;
     display: block;
     padding-top: 7;
     margin-top: -7px;

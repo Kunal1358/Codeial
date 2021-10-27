@@ -1,0 +1,62 @@
+#friend-ul{
+    color: #fff;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 0;
+    padding-bottom: 18;
+    list-style: none;
+    overflow: hidden;
+    background: #252830;
+    
+    box-shadow: 0 4px 30px rgb(0 0 0 / 50%);
+    border-radius: 6px;;
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#friend-li{
+    background: #000000;
+    margin-top: 18;
+    line-height: 3;
+
+    
+    box-shadow: 0 4px 30px rgb(0 0 0 / 50%);
+    border-radius: 6px;
+
+    
+
+}
+
+#friend-list-heading{
+    padding-left: 13px;
+    padding-top: 21px;
+    font-size: 28px;
+    font-family: Tahoma, sans-serif;
+    padding-bottom: 35px;
+
+}
+
+#friend-list-heading:hover{
+
+    text-decoration: underline;
+    text-decoration-color: #b9c3c9;
+    text-underline-offset: 8px;
+    background-color:252830;
+}
+
+.delete{
+
+    margin-top:8px;
+    color: rgb(79, 195, 248);
+    float: right;
+    padding-right: 20;
+
+}
+
+
+#friend-name{
+    padding-left: 20;
+} 

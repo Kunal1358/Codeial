@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-console.log("Inside notification Model \n");
-
 const notificationSchema = new mongoose.Schema({
 
     from_user: {
